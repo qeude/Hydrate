@@ -18,9 +18,9 @@ struct AuthenticationFormView: View {
     var isEmailAuthenticationButtonDisabled: Bool {
         switch authType {
         case .login:
-            return email.count == 0 || password.count == 0
+            return email.isEmpty || password.isEmpty
         case .signup:
-            return email.count == 0 || password.count == 0 || passwordConfirmation.count == 0 || firstname.count == 0
+            return email.isEmpty || password.isEmpty || passwordConfirmation.isEmpty || firstname.isEmpty
         }
     }
 
@@ -74,7 +74,10 @@ struct AuthenticationFormView: View {
         case .login:
             authState.login(with: .emailAndPassword(email: email, password: password))
         case .signup:
-            authState.signup(email: email, password: password, passwordConfirmation: passwordConfirmation, firstname: firstname)
+            authState.signup(email: email,
+                             password: password,
+                             passwordConfirmation: passwordConfirmation,
+                             firstname: firstname)
         }
     }
 

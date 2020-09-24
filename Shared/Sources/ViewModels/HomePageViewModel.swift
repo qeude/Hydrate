@@ -18,14 +18,14 @@ class HomePageViewModel: ObservableObject {
         self.authState = authState
         self.readUser()
     }
-    @Published var user: DbUser? = nil
+    @Published var user: DbUser?
     @Published var drinkEntries: [DrinkEntry] = []
 
-    let db = Firestore.firestore()
+    let database = Firestore.firestore()
 
     func readUser() {
         if let authUser = authState.loggedInUser {
-            db.collection("users").document(authUser.uid).addSnapshotListener { (documentSnapshot, error) in
+            database.collection("users").document(authUser.uid).addSnapshotListener { (documentSnapshot, _) in
                 guard let user = try? documentSnapshot?.data(as: DbUser.self) else {
                     return
                 }

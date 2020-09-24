@@ -16,7 +16,7 @@ struct AuthenticationView: View {
         ZStack {
             VStack(spacing: 40) {
                 Text("Hydrate").font(.largeTitle)
-                if (!authState.isAuthenticating) {
+                if !authState.isAuthenticating {
                     AuthenticationFormView(authType: $authType)
                 } else {
                     ProgressView()

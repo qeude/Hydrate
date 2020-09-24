@@ -20,11 +20,10 @@ enum AuthenticationType: String {
 
     var footerText: String {
         switch self {
-            case .login:
-                return "Not a member, signup"
-
-            case .signup:
-                return "Already a member? login"
+        case .login:
+            return "Not a member, signup"
+        case .signup:
+            return "Already a member? login"
         }
     }
 }

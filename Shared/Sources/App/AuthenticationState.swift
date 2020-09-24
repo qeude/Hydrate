@@ -42,7 +42,9 @@ class AuthenticationState: NSObject, ObservableObject {
 
     func signup(email: String, password: String, passwordConfirmation: String, firstname: String) {
         guard password == passwordConfirmation else {
-            self.error = NSError(domain: "", code: 9210, userInfo: [NSLocalizedDescriptionKey: "Password and confirmation does not match"])
+            self.error = NSError(domain: "",
+                                 code: 9210,
+                                 userInfo: [NSLocalizedDescriptionKey: "Password and confirmation does not match"])
             return
         }
 
@@ -67,9 +69,14 @@ class AuthenticationState: NSObject, ObservableObject {
                 self.loggedInUser = user
 
                 let docRef = Firestore.firestore().collection("users").document(user.uid)
-                docRef.getDocument { (document, error) in
-                    if let email = user.email, let firstname = firstname, document == nil || !(document?.exists ?? true) {
-                        _ = try? Firestore.firestore().collection("users").document(user.uid).setData(from: DbUser(id: user.uid, firstname: firstname, email: email))
+                docRef.getDocument { (document, _) in
+                    if let email = user.email,
+                       let firstname = firstname,
+                       document == nil || !(document?.exists ?? true) {
+                        _ = try? Firestore.firestore()
+                            .collection("users")
+                            .document(user.uid)
+                            .setData(from: DbUser(id: user.uid, firstname: firstname, email: email))
                     }
                 }
             } else if let error = error {
@@ -89,7 +96,8 @@ class AuthenticationState: NSObject, ObservableObject {
     }
 }
 
-//extension AuthenticationState: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+//extension AuthenticationState: ASAuthorizationControllerDelegate,
+//ASAuthorizationControllerPresentationContextProviding {
 //
 //    // 1
 //    private func handleSignInWithApple() {
@@ -113,7 +121,8 @@ class AuthenticationState: NSObject, ObservableObject {
 //    }
 //
 //    // 3
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+//    func authorizationController(controller: ASAuthorizationController,
+// didCompleteWithAuthorization authorization: ASAuthorization) {
 //        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
 //            guard let nonce = currentNonce else {
 //                fatalError("Invalid state: A login callback was received, but no login request was sent.")

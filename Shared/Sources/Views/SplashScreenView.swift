@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashScreenView: View {
     var body: some View {
-        ZStack{
+        ZStack {
             Color.white
             Text("splash screen").font(.title)
         }
