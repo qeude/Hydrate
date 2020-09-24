@@ -9,6 +9,8 @@ import Foundation
 import Combine
 import FirebaseAuth
 import AuthenticationServices
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 enum LoginOption {
 //    case signInWithApple
@@ -48,7 +50,6 @@ class AuthenticationState: NSObject, ObservableObject {
         self.error = nil
 
         auth.createUser(withEmail: email, password: password, completion: handleAuthResultCompletion)
-        //FIXME: should also create a db user
     }
 
     private func handleSignInWith(email: String, password: String) {
@@ -60,6 +61,12 @@ class AuthenticationState: NSObject, ObservableObject {
             self.isAuthenticating = false
             if let user = auth?.user {
                 self.loggedInUser = user
+                let docRef = Firestore.firestore().collection("users").document(user.uid)
+                docRef.getDocument { (document, error) in
+                    if let email = user.email, document == nil || !(document?.exists ?? true) {
+                        _ = try? Firestore.firestore().collection("users").document(user.uid).setData(from: DbUser(id: user.uid, email: email))
+                    }
+                }
             } else if let error = error {
                 self.error = error as NSError
             }
