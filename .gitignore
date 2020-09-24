@@ -7,7 +7,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-
+Shared/Sources/Generated/*
+!Shared/Sources/Generated/.gitkeep
 # Icon must end with two \r
 Icon
 
@@ -141,4 +142,5 @@ xcuserdata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 GoogleService-Info.plist
+
 # End of https://www.toptal.com/developers/gitignore/api/swift,swiftpackagemanager,swiftpm,xcode,macos

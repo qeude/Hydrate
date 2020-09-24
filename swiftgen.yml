@@ -1,0 +1,11 @@
+strings:
+  inputs: Shared/Resources/Base.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: Shared/Sources/Generated/Strings.swift
+xcassets:
+  inputs:
+    - Shared/Resources/Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: Shared/Sources/Generated/Colors.swift

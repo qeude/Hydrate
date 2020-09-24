@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0114962D251A88620030968B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0114962C251A88620030968B /* FirebaseAuth */; };
 		0114963C251A896F0030968B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0114963B251A896F0030968B /* FirebaseAuth */; };
+		0177F4AC251D3F44007ED465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177F4AA251D3F43007ED465 /* Colors.swift */; };
+		0177F4AD251D3F44007ED465 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177F4AB251D3F44007ED465 /* Strings.swift */; };
 		01787E44251D23FC004B85BA /* ObserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01787E43251D23FB004B85BA /* ObserveView.swift */; };
 		018F96C4251A9786002A5BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018F96C3251A9786002A5BB0 /* GoogleService-Info.plist */; };
 		018F96C5251A9786002A5BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018F96C3251A9786002A5BB0 /* GoogleService-Info.plist */; };
@@ -50,6 +52,10 @@
 		01E7D129251935BF00CC3DC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D0FB251935BD00CC3DC5 /* ContentView.swift */; };
 		01E7D12C251935BF00CC3DC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E7D0FD251935BE00CC3DC5 /* Assets.xcassets */; };
 		01E7D12D251935BF00CC3DC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E7D0FD251935BE00CC3DC5 /* Assets.xcassets */; };
+		01F46B6F251D3C4D0009F7A8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F46B6E251D3C4D0009F7A8 /* Colors.xcassets */; };
+		01F46B70251D3C4D0009F7A8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F46B6E251D3C4D0009F7A8 /* Colors.xcassets */; };
+		01F46B8D251D3E4A0009F7A8 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 01F46B8C251D3E4A0009F7A8 /* Base.lproj */; };
+		01F46B8E251D3E4A0009F7A8 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 01F46B8C251D3E4A0009F7A8 /* Base.lproj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0177F4AA251D3F43007ED465 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0177F4AB251D3F44007ED465 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		01787E43251D23FB004B85BA /* ObserveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveView.swift; sourceTree = "<group>"; };
 		018F96C3251A9786002A5BB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01A1CFCA251A9AA700EE1210 /* DrinkEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkEntry.swift; sourceTree = "<group>"; };
@@ -99,6 +107,8 @@
 		01E7D11D251935BE00CC3DC5 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E7D121251935BE00CC3DC5 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		01E7D123251935BE00CC3DC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01F46B6E251D3C4D0009F7A8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		01F46B8C251D3E4A0009F7A8 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +167,7 @@
 		01A1CFE1251B5D4D00EE1210 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				01F46B9E251D3EBE0009F7A8 /* Generated */,
 				01C51E49251B6C54007193D0 /* Extensions */,
 				01A1CFE5251B5D7D00EE1210 /* App */,
 				01A1CFE4251B5D6E00EE1210 /* ViewModels */,
@@ -244,7 +255,9 @@
 		01E016BF251BDF3C00745B1C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01F46B8C251D3E4A0009F7A8 /* Base.lproj */,
 				01E7D0FD251935BE00CC3DC5 /* Assets.xcassets */,
+				01F46B6E251D3C4D0009F7A8 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -318,6 +331,15 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		01F46B9E251D3EBE0009F7A8 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				0177F4AA251D3F43007ED465 /* Colors.swift */,
+				0177F4AB251D3F44007ED465 /* Strings.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +348,7 @@
 			buildConfigurationList = 01E7D130251935BF00CC3DC5 /* Build configuration list for PBXNativeTarget "Hydrate (iOS)" */;
 			buildPhases = (
 				01E7D0FE251935BE00CC3DC5 /* Sources */,
+				0177F4B2251D3FA9007ED465 /* SwiftGen */,
 				01E7D0FF251935BE00CC3DC5 /* Frameworks */,
 				01E7D100251935BE00CC3DC5 /* Resources */,
 				01787E5E251D3172004B85BA /* SwiftLint */,
@@ -349,6 +372,7 @@
 			buildConfigurationList = 01E7D133251935BF00CC3DC5 /* Build configuration list for PBXNativeTarget "Hydrate (macOS)" */;
 			buildPhases = (
 				01E7D106251935BE00CC3DC5 /* Sources */,
+				0177F4B3251D3FB9007ED465 /* SwiftGen */,
 				01E7D107251935BE00CC3DC5 /* Frameworks */,
 				01E7D108251935BE00CC3DC5 /* Resources */,
 				01787E5F251D318C004B85BA /* SwiftLint */,
@@ -435,6 +459,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 01E7D0F2251935BC00CC3DC5;
 			packageReferences = (
@@ -457,7 +482,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F46B6F251D3C4D0009F7A8 /* Colors.xcassets in Resources */,
 				01E7D12C251935BF00CC3DC5 /* Assets.xcassets in Resources */,
+				01F46B8D251D3E4A0009F7A8 /* Base.lproj in Resources */,
 				018F96C4251A9786002A5BB0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +493,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F46B70251D3C4D0009F7A8 /* Colors.xcassets in Resources */,
 				01E7D12D251935BF00CC3DC5 /* Assets.xcassets in Resources */,
+				01F46B8E251D3E4A0009F7A8 /* Base.lproj in Resources */,
 				018F96C5251A9786002A5BB0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +517,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0177F4B2251D3FA9007ED465 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
+		0177F4B3251D3FB9007ED465 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
 		01787E5E251D3172004B85BA /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,12 +599,14 @@
 				01A1CFE7251B5E0300EE1210 /* HomePageViewModel.swift in Sources */,
 				01A1CFFD251B62C100EE1210 /* AuthenticationType.swift in Sources */,
 				01A1D01D251B635E00EE1210 /* AuthenticationFormView.swift in Sources */,
+				0177F4AC251D3F44007ED465 /* Colors.swift in Sources */,
 				01A1D016251B631100EE1210 /* SplashScreenView.swift in Sources */,
 				01A1CFF2251B616700EE1210 /* AuthenticationState.swift in Sources */,
 				01A1CFCB251A9AA700EE1210 /* DrinkEntry.swift in Sources */,
 				01E016A2251BD8FC00745B1C /* ButtonStyles.swift in Sources */,
 				01E016C6251BE0D600745B1C /* Color.swift in Sources */,
 				01E016DD251BEDFC00745B1C /* DbUser.swift in Sources */,
+				0177F4AD251D3F44007ED465 /* Strings.swift in Sources */,
 				01E016B1251BD92B00745B1C /* TextFieldStyles.swift in Sources */,
 				01E7D126251935BE00CC3DC5 /* HydrateApp.swift in Sources */,
 				01A1D00F251B62F400EE1210 /* AuthenticationView.swift in Sources */,
