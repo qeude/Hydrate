@@ -13,11 +13,28 @@ struct AuthenticationFormView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var passwordConfirmation: String = ""
+    @State var firstname: String = ""
+
+    var isEmailAuthenticationButtonDisabled: Bool {
+        switch authType {
+        case .login:
+            return email.count == 0 || password.count == 0
+        case .signup:
+            return email.count == 0 || password.count == 0 || passwordConfirmation.count == 0 || firstname.count == 0
+        }
+    }
 
     @Binding var authType: AuthenticationType
 
     var body: some View {
         VStack(spacing: 16) {
+            if authType == .signup {
+                TextField("Firstname", text: $firstname)
+                    .textContentType(.name)
+                    .keyboardType(.default)
+                    .autocapitalization(.words)
+            }
+
             TextField("Email", text: $email)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
@@ -36,7 +53,7 @@ struct AuthenticationFormView: View {
 
             }
             .buttonStyle(PrimaryButtonStyle())
-            .disabled(email.count == 0 && password.count == 0)
+            .disabled(isEmailAuthenticationButtonDisabled)
 
             Button(action: footerButtonTapped) {
                 Text(authType.footerText)
@@ -56,9 +73,8 @@ struct AuthenticationFormView: View {
         switch authType {
         case .login:
             authState.login(with: .emailAndPassword(email: email, password: password))
-
         case .signup:
-            authState.signup(email: email, password: password, passwordConfirmation: passwordConfirmation)
+            authState.signup(email: email, password: password, passwordConfirmation: passwordConfirmation, firstname: firstname)
         }
     }
 

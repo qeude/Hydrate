@@ -14,8 +14,8 @@
             filePath = "Shared/Sources/App/AuthenticationState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "signout()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Shared/Sources/App/AuthenticationState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "signout()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Shared/Sources/App/AuthenticationState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "signout()"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,47 +55,62 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "17F6AB1C-DE9D-41C4-B748-6A124FA40B61"
+            uuid = "341118CE-6AE0-45EA-BD6C-AC80AD6825EE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/Sources/App/AuthenticationState.swift"
+            filePath = "Shared/Sources/Views/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "handleAuthResultCompletion(auth:error:)"
-            landmarkType = "7">
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "body"
+            landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "17F6AB1C-DE9D-41C4-B748-6A124FA40B61 - 3cac402b6b194791"
+                  uuid = "341118CE-6AE0-45EA-BD6C-AC80AD6825EE - fae8112adc16cf43"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Hydrate.AuthenticationState.(handleAuthResultCompletion in _EC4704D287B62EE7B7411BF68BBAAB91)(auth: Swift.Optional&lt;__C.FIRAuthDataResult&gt;, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  symbolName = "closure #1 (Hydrate.HomePageViewModel) -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0&gt; in Hydrate.HomeView.body.getter : some"
                   moduleName = "Hydrate"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qeude/dev/Hydrate/Shared/Sources/App/AuthenticationState.swift"
+                  urlString = "file:///Users/qeude/dev/Hydrate/Shared/Sources/Views/HomeView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "990">
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "38">
                </Location>
                <Location
-                  uuid = "17F6AB1C-DE9D-41C4-B748-6A124FA40B61 - dfe1d76b16155bde"
+                  uuid = "341118CE-6AE0-45EA-BD6C-AC80AD6825EE - b1698675c5fc24f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in Hydrate.AuthenticationState.(handleAuthResultCompletion in _EC4704D287B62EE7B7411BF68BBAAB91)(auth: Swift.Optional&lt;__C.FIRAuthDataResult&gt;, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0 in closure #1 (Hydrate.HomePageViewModel) -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0&gt; in Hydrate.HomeView.body.getter : some"
                   moduleName = "Hydrate"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qeude/dev/Hydrate/Shared/Sources/App/AuthenticationState.swift"
+                  urlString = "file:///Users/qeude/dev/Hydrate/Shared/Sources/Views/HomeView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "63">
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "366">
+               </Location>
+               <Location
+                  uuid = "341118CE-6AE0-45EA-BD6C-AC80AD6825EE - b1698675c5fc26c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0 in closure #1 (Hydrate.HomePageViewModel) -&gt; SwiftUI.NavigationView&lt;&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0&gt; in Hydrate.HomeView.body.getter : some"
+                  moduleName = "Hydrate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qeude/dev/Hydrate/Shared/Sources/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "1549">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -103,32 +118,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2BD5BDE8-686D-4B77-8273-CC0F77C0AB83"
+            uuid = "D8966D7B-3EF6-4FB4-BBF7-8A53C48B0258"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/Sources/App/AuthenticationState.swift"
+            filePath = "Shared/Sources/ViewModels/HomePageViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "handleAuthResultCompletion(auth:error:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D75A705A-D7B6-4E0F-8149-A41897FED604"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shared/Sources/App/AuthenticationState.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "handleAuthResultCompletion(auth:error:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "readUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

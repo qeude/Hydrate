@@ -12,11 +12,13 @@ import FirebaseFirestoreSwift
 struct DbUser: Codable {
     @DocumentID var id: String?
     @ServerTimestamp var time: Timestamp?
+    var firstname: String
     var email: String
 
     enum CodingKeys: String, CodingKey {
         case id
         case time
+        case firstname
         case email
     }
 }

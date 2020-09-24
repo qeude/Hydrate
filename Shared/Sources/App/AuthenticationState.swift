@@ -40,7 +40,7 @@ class AuthenticationState: NSObject, ObservableObject {
         }
     }
 
-    func signup(email: String, password: String, passwordConfirmation: String) {
+    func signup(email: String, password: String, passwordConfirmation: String, firstname: String) {
         guard password == passwordConfirmation else {
             self.error = NSError(domain: "", code: 9210, userInfo: [NSLocalizedDescriptionKey: "Password and confirmation does not match"])
             return
@@ -49,28 +49,34 @@ class AuthenticationState: NSObject, ObservableObject {
         self.isAuthenticating = true
         self.error = nil
 
-        auth.createUser(withEmail: email, password: password, completion: handleAuthResultCompletion)
+        auth.createUser(withEmail: email, password: password) { auth, error in
+            self.handleAuthResultCompletion(firstname: firstname, auth: auth, error: error)
+        }
     }
 
     private func handleSignInWith(email: String, password: String) {
-        auth.signIn(withEmail: email, password: password, completion: handleAuthResultCompletion)
+        auth.signIn(withEmail: email, password: password) { auth, error in
+            self.handleAuthResultCompletion(auth: auth, error: error)
+        }
     }
 
-    private func handleAuthResultCompletion(auth: AuthDataResult?, error: Error?) {
+    private func handleAuthResultCompletion(firstname: String? = nil, auth: AuthDataResult?, error: Error?) {
         DispatchQueue.main.async {
             self.isAuthenticating = false
             if let user = auth?.user {
                 self.loggedInUser = user
+
                 let docRef = Firestore.firestore().collection("users").document(user.uid)
                 docRef.getDocument { (document, error) in
-                    if let email = user.email, document == nil || !(document?.exists ?? true) {
-                        _ = try? Firestore.firestore().collection("users").document(user.uid).setData(from: DbUser(id: user.uid, email: email))
+                    if let email = user.email, let firstname = firstname, document == nil || !(document?.exists ?? true) {
+                        _ = try? Firestore.firestore().collection("users").document(user.uid).setData(from: DbUser(id: user.uid, firstname: firstname, email: email))
                     }
                 }
             } else if let error = error {
                 self.error = error as NSError
             }
         }
+
     }
 
     func signout() {
