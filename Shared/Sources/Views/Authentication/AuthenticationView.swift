@@ -15,7 +15,7 @@ struct AuthenticationView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 40) {
-                Text("Hydrate").font(.largeTitle)
+                Text(L10n.App.name).font(.largeTitle)
                 if !authState.isAuthenticating {
                     AuthenticationFormView(authType: $authType)
                 } else {

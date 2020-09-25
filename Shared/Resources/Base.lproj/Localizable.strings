@@ -5,3 +5,23 @@
   Created by Quentin Eude on 24/09/2020.
   Copyright © 2020 Quentin Eude. All rights reserved.
 */
+
+// MARK: App
+"app.name" = "Hydrate";
+
+
+// MARK: Common
+"common.error" = "Error";
+
+
+// MARK: Auth
+"auth.firstname.textfield.placeholder" = "Firstname";
+"auth.email.textfield.placeholder" = "Email";
+"auth.password.textfield.placeholder" = "Password";
+"auth.password.confirmation.textfield.placeholder" = "Password confirmation";
+"auth.signin.button" = "Sign in";
+"auth.signup.button" = "Sign up";
+"auth.signout.button" = "Sign out";
+"auth.notamember.button" = "Not a member ? Signup.";
+
+

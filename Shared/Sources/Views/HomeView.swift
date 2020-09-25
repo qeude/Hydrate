@@ -15,7 +15,7 @@ struct HomeView: View {
         Observe(obj: HomePageViewModel(authState: authState)) { homeViewModel in
             NavigationView {
                 VStack {
-                    Button("Sign out", action: signoutTapped)
+                    Button(L10n.Auth.Signout.button, action: signoutTapped)
                 }.navigationTitle("Hello \(homeViewModel.user?.firstname ?? "")")
             }
         }

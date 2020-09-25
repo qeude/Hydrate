@@ -7,5 +7,5 @@ xcassets:
   inputs:
     - Shared/Resources/Colors.xcassets
   outputs:
-    - templateName: swift5
+    - templatePath: swiftui-xcassets.stencil
       output: Shared/Sources/Generated/Colors.swift

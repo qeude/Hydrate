@@ -16,6 +16,6 @@ struct PrimaryTextFieldStyle: TextFieldStyle {
                 RoundedRectangle(cornerRadius: 18)
                     .strokeBorder(Color.gray, lineWidth: 0.5)
             )
-            .foregroundColor(Color.primaryText)
+            .foregroundColor(Color.primary)
     }
 }

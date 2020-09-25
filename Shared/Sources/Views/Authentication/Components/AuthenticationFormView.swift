@@ -29,21 +29,21 @@ struct AuthenticationFormView: View {
     var body: some View {
         VStack(spacing: 16) {
             if authType == .signup {
-                TextField("Firstname", text: $firstname)
+                TextField(L10n.Auth.Firstname.Textfield.placeholder, text: $firstname)
                     .textContentType(.name)
                     .keyboardType(.default)
                     .autocapitalization(.words)
             }
 
-            TextField("Email", text: $email)
+            TextField(L10n.Auth.Email.Textfield.placeholder, text: $email)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
 
-            SecureField("Password", text: $password)
+            SecureField(L10n.Auth.Password.Textfield.placeholder, text: $password)
 
             if authType == .signup {
-                SecureField("Password Confirmation", text: $passwordConfirmation)
+                SecureField(L10n.Auth.Password.Confirmation.Textfield.placeholder, text: $passwordConfirmation)
             }
 
             Button(action: emailAuthenticationTapped) {
@@ -65,7 +65,7 @@ struct AuthenticationFormView: View {
         .padding(16)
         .textFieldStyle(PrimaryTextFieldStyle())
         .alert(item: $authState.error) { error in
-            Alert(title: Text("Error"), message: Text(error.localizedDescription))
+            Alert(title: Text(L10n.Common.error), message: Text(error.localizedDescription))
         }
     }
 

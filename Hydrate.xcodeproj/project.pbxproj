@@ -40,8 +40,6 @@
 		01E016A3251BD8FC00745B1C /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016A1251BD8FC00745B1C /* ButtonStyles.swift */; };
 		01E016B1251BD92B00745B1C /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016B0251BD92B00745B1C /* TextFieldStyles.swift */; };
 		01E016B2251BD92B00745B1C /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016B0251BD92B00745B1C /* TextFieldStyles.swift */; };
-		01E016C6251BE0D600745B1C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016C5251BE0D600745B1C /* Color.swift */; };
-		01E016C7251BE0D600745B1C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016C5251BE0D600745B1C /* Color.swift */; };
 		01E016DD251BEDFC00745B1C /* DbUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016DC251BEDFC00745B1C /* DbUser.swift */; };
 		01E016DE251BEDFC00745B1C /* DbUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E016DC251BEDFC00745B1C /* DbUser.swift */; };
 		01E7D117251935BE00CC3DC5 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D116251935BE00CC3DC5 /* Tests_iOS.swift */; };
@@ -91,7 +89,6 @@
 		01C51E4A251B6C88007193D0 /* String+Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Crypto.swift"; sourceTree = "<group>"; };
 		01E016A1251BD8FC00745B1C /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		01E016B0251BD92B00745B1C /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
-		01E016C5251BE0D600745B1C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		01E016DC251BEDFC00745B1C /* DbUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbUser.swift; sourceTree = "<group>"; };
 		01E7D0FA251935BD00CC3DC5 /* HydrateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrateApp.swift; sourceTree = "<group>"; };
 		01E7D0FB251935BD00CC3DC5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -220,7 +217,6 @@
 		01C51E49251B6C54007193D0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				01E016C5251BE0D600745B1C /* Color.swift */,
 				01C51E4A251B6C88007193D0 /* String+Crypto.swift */,
 			);
 			path = Extensions;
@@ -604,7 +600,6 @@
 				01A1CFF2251B616700EE1210 /* AuthenticationState.swift in Sources */,
 				01A1CFCB251A9AA700EE1210 /* DrinkEntry.swift in Sources */,
 				01E016A2251BD8FC00745B1C /* ButtonStyles.swift in Sources */,
-				01E016C6251BE0D600745B1C /* Color.swift in Sources */,
 				01E016DD251BEDFC00745B1C /* DbUser.swift in Sources */,
 				0177F4AD251D3F44007ED465 /* Strings.swift in Sources */,
 				01E016B1251BD92B00745B1C /* TextFieldStyles.swift in Sources */,
@@ -628,7 +623,6 @@
 				01A1CFF3251B616700EE1210 /* AuthenticationState.swift in Sources */,
 				01A1CFCC251A9AA700EE1210 /* DrinkEntry.swift in Sources */,
 				01E016A3251BD8FC00745B1C /* ButtonStyles.swift in Sources */,
-				01E016C7251BE0D600745B1C /* Color.swift in Sources */,
 				01E016DE251BEDFC00745B1C /* DbUser.swift in Sources */,
 				01E016B2251BD92B00745B1C /* TextFieldStyles.swift in Sources */,
 				01E7D127251935BF00CC3DC5 /* HydrateApp.swift in Sources */,
