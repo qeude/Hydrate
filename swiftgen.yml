@@ -6,6 +6,7 @@ strings:
 xcassets:
   inputs:
     - Shared/Resources/Colors.xcassets
+    - Shared/Resources/Images.xcassets
   outputs:
     - templatePath: swiftui-xcassets.stencil
-      output: Shared/Sources/Generated/Colors.swift
+      output: Shared/Sources/Generated/Assets.swift

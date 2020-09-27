@@ -13,12 +13,30 @@ struct HomeView: View {
 
     var body: some View {
         Observe(obj: HomePageViewModel(authState: authState)) { homeViewModel in
-            NavigationView {
-                VStack {
-                    Button(L10n.Auth.Signout.button, action: signoutTapped)
-                }.navigationTitle("Hello \(homeViewModel.user?.firstname ?? "")")
+            Group {
+                #if os(iOS)
+                iOSBody(homeViewModel: homeViewModel)
+                #elseif os(macOS)
+                macOSBody(homeViewModel: homeViewModel)
+                #endif
             }
+        }.foregroundColor(Color.primaryText)
+    }
+
+    private func iOSBody(homeViewModel: HomePageViewModel) -> some View {
+        return NavigationView {
+            VStack {
+                Text("iOS 📱🎉")
+            }
+            .navigationTitle("Hello \(homeViewModel.user?.firstname ?? "")")
+            .navigationBarItems(trailing: Button(L10n.Auth.Signout.button, action: signoutTapped))
         }
+    }
+
+    private func macOSBody(homeViewModel: HomePageViewModel) -> some View {
+        return Text("MacOS 💻🎉").toolbar(content: {
+            Button(L10n.Auth.Signout.button, action: signoutTapped)
+        })
     }
 
     private func signoutTapped() {

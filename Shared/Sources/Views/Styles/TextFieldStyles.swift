@@ -12,10 +12,11 @@ struct PrimaryTextFieldStyle: TextFieldStyle {
         configuration
             .frame(height: 28)
             .padding(8)
+            .textFieldStyle(PlainTextFieldStyle())
             .background(
-                RoundedRectangle(cornerRadius: 18)
+                RoundedRectangle(cornerRadius: 50)
                     .strokeBorder(Color.gray, lineWidth: 0.5)
             )
-            .foregroundColor(Color.primary)
+            .foregroundColor(Color.primaryText)
     }
 }

@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		0114962D251A88620030968B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0114962C251A88620030968B /* FirebaseAuth */; };
 		0114963C251A896F0030968B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0114963B251A896F0030968B /* FirebaseAuth */; };
-		0177F4AC251D3F44007ED465 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177F4AA251D3F43007ED465 /* Colors.swift */; };
+		0177B6A22520D29200069F83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177F4AB251D3F44007ED465 /* Strings.swift */; };
+		0177B6A32520D29500069F83 /* ObserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01787E43251D23FB004B85BA /* ObserveView.swift */; };
+		0177B6A92520DF2500069F83 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0177B6A82520DF2500069F83 /* Images.xcassets */; };
+		0177B6AA2520DF2600069F83 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0177B6A82520DF2500069F83 /* Images.xcassets */; };
+		0177B6B02520DFEC00069F83 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B6AF2520DFEC00069F83 /* Assets.swift */; };
+		0177B6B12520DFEC00069F83 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B6AF2520DFEC00069F83 /* Assets.swift */; };
 		0177F4AD251D3F44007ED465 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177F4AB251D3F44007ED465 /* Strings.swift */; };
 		01787E44251D23FC004B85BA /* ObserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01787E43251D23FB004B85BA /* ObserveView.swift */; };
 		018F96C4251A9786002A5BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018F96C3251A9786002A5BB0 /* GoogleService-Info.plist */; };
@@ -74,7 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0177F4AA251D3F43007ED465 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0177B6A82520DF2500069F83 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0177B6AF2520DFEC00069F83 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		0177F4AB251D3F44007ED465 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		01787E43251D23FB004B85BA /* ObserveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveView.swift; sourceTree = "<group>"; };
 		018F96C3251A9786002A5BB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 				01F46B8C251D3E4A0009F7A8 /* Base.lproj */,
 				01E7D0FD251935BE00CC3DC5 /* Assets.xcassets */,
 				01F46B6E251D3C4D0009F7A8 /* Colors.xcassets */,
+				0177B6A82520DF2500069F83 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -330,7 +337,7 @@
 		01F46B9E251D3EBE0009F7A8 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				0177F4AA251D3F43007ED465 /* Colors.swift */,
+				0177B6AF2520DFEC00069F83 /* Assets.swift */,
 				0177F4AB251D3F44007ED465 /* Strings.swift */,
 			);
 			path = Generated;
@@ -343,8 +350,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01E7D130251935BF00CC3DC5 /* Build configuration list for PBXNativeTarget "Hydrate (iOS)" */;
 			buildPhases = (
-				01E7D0FE251935BE00CC3DC5 /* Sources */,
 				0177F4B2251D3FA9007ED465 /* SwiftGen */,
+				01E7D0FE251935BE00CC3DC5 /* Sources */,
 				01E7D0FF251935BE00CC3DC5 /* Frameworks */,
 				01E7D100251935BE00CC3DC5 /* Resources */,
 				01787E5E251D3172004B85BA /* SwiftLint */,
@@ -367,8 +374,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01E7D133251935BF00CC3DC5 /* Build configuration list for PBXNativeTarget "Hydrate (macOS)" */;
 			buildPhases = (
-				01E7D106251935BE00CC3DC5 /* Sources */,
 				0177F4B3251D3FB9007ED465 /* SwiftGen */,
+				01E7D106251935BE00CC3DC5 /* Sources */,
 				01E7D107251935BE00CC3DC5 /* Frameworks */,
 				01E7D108251935BE00CC3DC5 /* Resources */,
 				01787E5F251D318C004B85BA /* SwiftLint */,
@@ -479,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F46B6F251D3C4D0009F7A8 /* Colors.xcassets in Resources */,
+				0177B6A92520DF2500069F83 /* Images.xcassets in Resources */,
 				01E7D12C251935BF00CC3DC5 /* Assets.xcassets in Resources */,
 				01F46B8D251D3E4A0009F7A8 /* Base.lproj in Resources */,
 				018F96C4251A9786002A5BB0 /* GoogleService-Info.plist in Resources */,
@@ -490,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F46B70251D3C4D0009F7A8 /* Colors.xcassets in Resources */,
+				0177B6AA2520DF2600069F83 /* Images.xcassets in Resources */,
 				01E7D12D251935BF00CC3DC5 /* Assets.xcassets in Resources */,
 				01F46B8E251D3E4A0009F7A8 /* Base.lproj in Resources */,
 				018F96C5251A9786002A5BB0 /* GoogleService-Info.plist in Resources */,
@@ -595,11 +604,11 @@
 				01A1CFE7251B5E0300EE1210 /* HomePageViewModel.swift in Sources */,
 				01A1CFFD251B62C100EE1210 /* AuthenticationType.swift in Sources */,
 				01A1D01D251B635E00EE1210 /* AuthenticationFormView.swift in Sources */,
-				0177F4AC251D3F44007ED465 /* Colors.swift in Sources */,
 				01A1D016251B631100EE1210 /* SplashScreenView.swift in Sources */,
 				01A1CFF2251B616700EE1210 /* AuthenticationState.swift in Sources */,
 				01A1CFCB251A9AA700EE1210 /* DrinkEntry.swift in Sources */,
 				01E016A2251BD8FC00745B1C /* ButtonStyles.swift in Sources */,
+				0177B6B02520DFEC00069F83 /* Assets.swift in Sources */,
 				01E016DD251BEDFC00745B1C /* DbUser.swift in Sources */,
 				0177F4AD251D3F44007ED465 /* Strings.swift in Sources */,
 				01E016B1251BD92B00745B1C /* TextFieldStyles.swift in Sources */,
@@ -616,11 +625,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0177B6A32520D29500069F83 /* ObserveView.swift in Sources */,
+				0177B6A22520D29200069F83 /* Strings.swift in Sources */,
 				01A1CFE8251B5E0300EE1210 /* HomePageViewModel.swift in Sources */,
 				01A1CFFE251B62C100EE1210 /* AuthenticationType.swift in Sources */,
 				01A1D01E251B635E00EE1210 /* AuthenticationFormView.swift in Sources */,
 				01A1D017251B631100EE1210 /* SplashScreenView.swift in Sources */,
 				01A1CFF3251B616700EE1210 /* AuthenticationState.swift in Sources */,
+				0177B6B12520DFEC00069F83 /* Assets.swift in Sources */,
 				01A1CFCC251A9AA700EE1210 /* DrinkEntry.swift in Sources */,
 				01E016A3251BD8FC00745B1C /* ButtonStyles.swift in Sources */,
 				01E016DE251BEDFC00745B1C /* DbUser.swift in Sources */,

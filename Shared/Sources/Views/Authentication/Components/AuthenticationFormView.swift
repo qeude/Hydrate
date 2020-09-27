@@ -28,18 +28,29 @@ struct AuthenticationFormView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            #if os(iOS)
             if authType == .signup {
                 TextField(L10n.Auth.Firstname.Textfield.placeholder, text: $firstname)
+                    .disableAutocorrection(true)
                     .textContentType(.name)
                     .keyboardType(.default)
                     .autocapitalization(.words)
             }
 
             TextField(L10n.Auth.Email.Textfield.placeholder, text: $email)
+                .disableAutocorrection(true)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
+            #elseif os(macOS)
+            if authType == .signup {
+                TextField(L10n.Auth.Firstname.Textfield.placeholder, text: $firstname)
+                    .disableAutocorrection(true)
+            }
 
+            TextField(L10n.Auth.Email.Textfield.placeholder, text: $email)
+                .disableAutocorrection(true)
+            #endif
             SecureField(L10n.Auth.Password.Textfield.placeholder, text: $password)
 
             if authType == .signup {
