@@ -17,6 +17,7 @@ class HomePageViewModel: ObservableObject {
     init(authState: AuthenticationState) {
         self.authState = authState
         self.readUser()
+        self.readDrinkEntries()
     }
     @Published var user: DbUser?
     @Published var drinkEntries: [DrinkEntry] = []
@@ -33,5 +34,25 @@ class HomePageViewModel: ObservableObject {
                 self.user = user
             }
         }
+    }
+
+    func readDrinkEntries() {
+        // FIXME: should maybe don't get everything here, but maybe just information about the current day
+        if let authUser = authState.loggedInUser {
+            database
+                .collection("users")
+                .document(authUser.uid)
+                .collection("drink-entries")
+                .order(by: "time", descending: true)
+                .addSnapshotListener { (snapshot, _) in
+                    self.drinkEntries = []
+                    snapshot?.documents.forEach { documentSnapshot in
+                        if let drinkEntry = try? documentSnapshot.data(as: DrinkEntry.self) {
+                            self.drinkEntries.append(drinkEntry)
+                        }
+                    }
+                }
+        }
+
     }
 }

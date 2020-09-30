@@ -11,24 +11,31 @@ struct AuthenticationView: View {
 
     @EnvironmentObject var authState: AuthenticationState
     @State var authType = AuthenticationType.login
+    @State var showSplashScreen = true
 
     var body: some View {
-        ZStack {
-            VStack(spacing: 20) {
-                VStack(spacing: 10) {
-                    Image.iconTransparentBackground
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                    Text(L10n.App.name)
-                        .font(.largeTitle)
-                        .bold()
-                }
-                if !authState.isAuthenticating {
-                    AuthenticationFormView(authType: $authType)
-                } else {
-                    ProgressView()
-                }
+        VStack(spacing: 20) {
+            VStack(spacing: 10) {
+                Image.iconTransparentBackground
+                    .resizable()
+                    .frame(width: 100, height: 100, alignment: .center)
+                Text(L10n.App.name)
+                    .font(.largeTitle)
+                    .bold()
             }
+            if !authState.isAuthenticating && !showSplashScreen {
+                AuthenticationFormView(authType: $authType)
+            } else if authState.isAuthenticating {
+                ProgressView()
+            }
+        }
+        .onAppear(perform: delaySplashScreen)
+        .transition(.opacity)
+    }
+
+    private func delaySplashScreen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            showSplashScreen = false
         }
     }
 }

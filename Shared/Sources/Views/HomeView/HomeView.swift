@@ -13,20 +13,29 @@ struct HomeView: View {
 
     var body: some View {
         Observe(obj: HomePageViewModel(authState: authState)) { homeViewModel in
-            Group {
+            ZStack {
                 #if os(iOS)
                 iOSBody(homeViewModel: homeViewModel)
                 #elseif os(macOS)
                 macOSBody(homeViewModel: homeViewModel)
                 #endif
             }
-        }.foregroundColor(Color.primaryText)
+        }
     }
 
     private func iOSBody(homeViewModel: HomePageViewModel) -> some View {
         return NavigationView {
-            VStack {
-                Text("iOS 📱🎉")
+            ZStack {
+                Color.background.edgesIgnoringSafeArea(.all)
+                VStack {
+                    CircularProgressBar(progress: .constant(0.25))
+                        .frame(width: 200, height: 200, alignment: .center)
+                    List {
+                        ForEach(homeViewModel.drinkEntries, id: \.id) { item in
+                            Text("DrinkEntry (\(item.id ?? "")) at \(item.time!.dateValue()): \(item.quantity)")
+                        }
+                    }
+                }
             }
             .navigationTitle("Hello \(homeViewModel.user?.firstname ?? "")")
             .navigationBarItems(trailing: Button(L10n.Auth.Signout.button, action: signoutTapped))

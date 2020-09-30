@@ -13,7 +13,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 enum LoginOption {
-//    case signInWithApple
+    //    case signInWithApple
     case emailAndPassword(email: String, password: String)
 }
 
@@ -28,13 +28,21 @@ class AuthenticationState: NSObject, ObservableObject {
     private let auth = Auth.auth()
     fileprivate var currentNonce: String?
 
+    func listenUser() {
+        auth.addStateDidChangeListener { _, user in
+            if let user = user {
+                self.loggedInUser = user
+            } else {
+                self.loggedInUser = nil
+            }
+        }
+    }
+
     func login(with loginOption: LoginOption) {
         self.isAuthenticating = true
         self.error = nil
 
         switch loginOption {
-//        case .signInWithApple:
-//            handleSignInWithApple()
         case let .emailAndPassword(email, password):
             handleSignInWith(email: email, password: password)
         }
@@ -50,7 +58,6 @@ class AuthenticationState: NSObject, ObservableObject {
 
         self.isAuthenticating = true
         self.error = nil
-
         auth.createUser(withEmail: email, password: password) { auth, error in
             self.handleAuthResultCompletion(firstname: firstname, auth: auth, error: error)
         }
@@ -95,62 +102,3 @@ class AuthenticationState: NSObject, ObservableObject {
         }
     }
 }
-
-//extension AuthenticationState: ASAuthorizationControllerDelegate,
-//ASAuthorizationControllerPresentationContextProviding {
-//
-//    // 1
-//    private func handleSignInWithApple() {
-//        let nonce = String.randomNonceString()
-//        currentNonce = nonce
-//
-//        let appleIDProvider = ASAuthorizationAppleIDProvider()
-//        let request = appleIDProvider.createRequest()
-//        request.requestedScopes = [.fullName, .email]
-//        request.nonce = nonce.sha256
-//
-//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-//        authorizationController.delegate = self
-//        authorizationController.presentationContextProvider = self
-//        authorizationController.performRequests()
-//    }
-//
-//    // 2
-//    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-//        return UIApplication.shared.windows[0]
-//    }
-//
-//    // 3
-//    func authorizationController(controller: ASAuthorizationController,
-// didCompleteWithAuthorization authorization: ASAuthorization) {
-//        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-//            guard let nonce = currentNonce else {
-//                fatalError("Invalid state: A login callback was received, but no login request was sent.")
-//            }
-//            guard let appleIDToken = appleIDCredential.identityToken else {
-//                print("Unable to fetch identity token")
-//                return
-//            }
-//            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-//                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-//                return
-//            }
-//
-//            // Initialize a Firebase credential.
-//            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-//            idToken: idTokenString,
-//            rawNonce: nonce)
-//
-//            // Sign in with Firebase.
-//            Auth.auth().signIn(with: credential, completion: handleAuthResultCompletion)
-//        }
-//    }
-//
-//    // 4
-//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-//        print("Sign in with Apple error: \(error)")
-//        self.isAuthenticating = false
-//        self.error = error as NSError
-//    }
-//
-//}

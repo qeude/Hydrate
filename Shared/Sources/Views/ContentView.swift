@@ -15,18 +15,18 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color.background.edgesIgnoringSafeArea(.all)
-            if authState.loggedInUser != nil {
+            if authState.loggedInUser != nil && !showSplashScreen {
                 HomeView()
             } else {
                 AuthenticationView(authType: .login)
             }
-
-            if showSplashScreen {
-                SplashScreenView()
-            }
         }
-        .onAppear(perform: delaySplashScreen)
-        .animation(.easeInOut)
+        .onAppear(perform: onAppear)
+    }
+
+    private func onAppear() {
+        authState.listenUser()
+        delaySplashScreen()
     }
 
     private func delaySplashScreen() {
