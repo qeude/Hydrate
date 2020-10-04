@@ -7,11 +7,20 @@
 
 import SwiftUI
 
-struct CircularProgressBar: View {
-    @Binding var progress: Float
+struct CircularProgressBar<Content: View>: View {
+    let progress: Float
+    let user: DbUser
+    let content: Content
+
     var centerCircleCoefficient: CGFloat = 0.80
     var deltaCenterCircleCoefficient: CGFloat {
         return ((1 - self.centerCircleCoefficient) / 2) + centerCircleCoefficient
+    }
+
+    init(progress: Float, user: DbUser, @ViewBuilder content: @escaping () -> Content) {
+        self.progress = progress
+        self.user = user
+        self.content = content()
     }
 
     var body: some View {
@@ -28,19 +37,23 @@ struct CircularProgressBar: View {
                             .mask(Circle().fill(LinearGradient(Color.darkShadow, Color.clear)))
                     )
                     .overlay(
-                           Circle()
-                               .stroke(Color.lightShadow, lineWidth: 12)
-                               .blur(radius: 5)
-                               .offset(x: -2, y: -2)
-                               .mask(Circle().fill(LinearGradient(Color.clear, Color.darkShadow
-                               )))
-                       )
-                Circle()
-                    .frame(width: geo.size.width * centerCircleCoefficient,
-                           height: geo.size.height * centerCircleCoefficient)
-                    .foregroundColor(Color.background)
-                    .shadow(color: Color.darkShadow.opacity(0.3), radius: 10, x: 5, y: 5)
-                    .shadow(color: Color.lightShadow.opacity(0.7), radius: 10, x: -5, y: -5)
+                        Circle()
+                            .stroke(Color.lightShadow, lineWidth: 12)
+                            .blur(radius: 5)
+                            .offset(x: -2, y: -2)
+                            .mask(Circle().fill(LinearGradient(Color.clear, Color.darkShadow
+                            )))
+                    )
+
+                self.content
+                    .background(
+                        Circle()
+                            .frame(width: geo.size.width * centerCircleCoefficient,
+                                   height: geo.size.height * centerCircleCoefficient)
+                            .foregroundColor(Color.background)
+                            .shadow(color: Color.darkShadow.opacity(0.3), radius: 10, x: 5, y: 5)
+                            .shadow(color: Color.lightShadow.opacity(0.7), radius: 10, x: -5, y: -5)
+                    )
 
                 Circle()
                     .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
@@ -58,15 +71,20 @@ struct CircularProgressBar: View {
     }
 }
 
+extension CircularProgressBar where Content == EmptyView {
+    init(progress: Float, user: DbUser) {
+        self.init(progress: progress, user: user, content: { EmptyView() })
+    }
+}
+
 extension LinearGradient {
     init(_ colors: Color...) {
         self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 }
 
-
 struct CircularProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        CircularProgressBar(progress: .constant(50))
+        CircularProgressBar(progress: 0.5, user: DbUser(id: "test", time: nil, firstname: "Quentin", email: "test@test.fr", dailyGoal: 2000)) { EmptyView() }
     }
 }

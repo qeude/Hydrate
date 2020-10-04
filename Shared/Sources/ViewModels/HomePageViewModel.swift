@@ -13,13 +13,20 @@ import FirebaseAuth
 
 class HomePageViewModel: ObservableObject {
     var authState: AuthenticationState
+    let date = Date()
+    let calendar = Calendar.current
+    let startTime: Date
 
     init(authState: AuthenticationState) {
         self.authState = authState
+        startTime = calendar.startOfDay(for: self.date)
+
         self.readUser()
         self.readDrinkEntries()
     }
+
     @Published var user: DbUser?
+    @Published var quantityDrinkedToday: Int = 0
     @Published var drinkEntries: [DrinkEntry] = []
 
     let database = Firestore.firestore()
@@ -37,18 +44,19 @@ class HomePageViewModel: ObservableObject {
     }
 
     func readDrinkEntries() {
-        // FIXME: should maybe don't get everything here, but maybe just information about the current day
         if let authUser = authState.loggedInUser {
             database
                 .collection("users")
                 .document(authUser.uid)
                 .collection("drink-entries")
+                .whereField("time", isGreaterThanOrEqualTo: startTime)
+                .whereField("time", isLessThanOrEqualTo: Date())
                 .order(by: "time", descending: true)
                 .addSnapshotListener { (snapshot, _) in
-                    self.drinkEntries = []
+                    self.quantityDrinkedToday = 0
                     snapshot?.documents.forEach { documentSnapshot in
                         if let drinkEntry = try? documentSnapshot.data(as: DrinkEntry.self) {
-                            self.drinkEntries.append(drinkEntry)
+                            self.quantityDrinkedToday += drinkEntry.quantity
                         }
                     }
                 }

@@ -25,3 +25,7 @@
 "auth.notamember.button" = "Not a member ? Signup.";
 
 
+// MARK: Circular Progress
+"circular_progress.drunk.label" = "Drunk";
+"circular_progress.drunk.quantity.label" = "%@ ml";
+"circular_progress.drunk.target.label" = "out of %@ ml target";

@@ -14,7 +14,7 @@ struct DbUser: Codable {
     @ServerTimestamp var time: Timestamp?
     var firstname: String
     var email: String
-    var dailyGoal: Double? = 1500
+    var dailyGoal: Int? = 1500
 
     enum CodingKeys: String, CodingKey {
         case id
