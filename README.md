@@ -11,10 +11,11 @@
 
 ## 🛠 Install
 * `git clone https://github.com/qeude/Hydrate.git`
+* Add your `GoogleService-Info.plist` from your [Firebase project](http://firebase.google.com) to the root of the project.
 * Build the app through Xcode.
 
 ## 📦 Dependencies
-* [Firebase](https://github.com/firebase/firebase-ios-sdk)
+* [Firebase](https://github.com/firebase/firebase-ios-sdk): Auth, real-time database.
 * [SwiftGen](https://github.com/SwiftGen/SwiftGen): Internationalization, Colors, etc...
 
 ## 👨🏻‍💻 Developer
