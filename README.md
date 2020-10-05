@@ -17,6 +17,7 @@
 ## 📦 Dependencies
 * [Firebase](https://github.com/firebase/firebase-ios-sdk): Auth, real-time database.
 * [SwiftGen](https://github.com/SwiftGen/SwiftGen): Internationalization, Colors, etc...
+* [SwiftDate](https://github.com/malcommac/SwiftDate): Parse, validate, manipulate, and display dates, time and timezones in Swift.
 
 ## 👨🏻‍💻 Developer
 * Quentin Eude

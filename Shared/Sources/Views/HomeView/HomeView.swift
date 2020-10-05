@@ -10,7 +10,6 @@ import FirebaseAuth
 
 struct HomeView: View {
     @EnvironmentObject var authState: AuthenticationState
-
     var body: some View {
         Observe(obj: HomePageViewModel(authState: authState)) { homeViewModel in
             Group {
@@ -42,7 +41,8 @@ struct HomeView: View {
                                     .foregroundColor(.secondaryText)
                             }
                         }
-                            .frame(width: 200, height: 200, alignment: .center)
+                        .frame(width: 200, height: 200, alignment: .center)
+                        Barchart().frame(height: 200).padding(24)
                         ForEach(homeViewModel.drinkEntries, id: \.id) { item in
                             Text("DrinkEntry (\(item.id ?? "")) at \(item.time!.dateValue()): \(item.quantity)")
                         }
@@ -50,7 +50,26 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Hello \(homeViewModel.user?.firstname ?? "")")
-            .navigationBarItems(trailing: Button(L10n.Auth.Signout.button, action: signoutTapped))
+            .navigationBarItems(trailing: HStack {
+                Button(L10n.Auth.Signout.button, action: signoutTapped)
+                Menu {
+                    Button(L10n.AddDrinkEntry._250ml.Button.label) {
+                        homeViewModel.addDrinkEntry(quantity: 250)
+                    }
+                    Button(L10n.AddDrinkEntry._500ml.Button.label) {
+                        homeViewModel.addDrinkEntry(quantity: 500)
+                    }
+                    Button(L10n.AddDrinkEntry._1000ml.Button.label) {
+                        homeViewModel.addDrinkEntry(quantity: 1000)
+                    }
+                    Button(L10n.AddDrinkEntry._1500ml.Button.label) {
+                        homeViewModel.addDrinkEntry(quantity: 1500)
+                    }
+                    Button(L10n.AddDrinkEntry.Custom.Button.label, action: {})
+                } label: {
+                    Image(systemName: "plus").font(.system(size: 18))
+                }
+            })
         }
     }
 

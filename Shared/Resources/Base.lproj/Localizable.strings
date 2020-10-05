@@ -29,3 +29,12 @@
 "circular_progress.drunk.label" = "Drunk";
 "circular_progress.drunk.quantity.label" = "%@ ml";
 "circular_progress.drunk.target.label" = "out of %@ ml target";
+
+
+// MARK: Add drink entry
+"add_drink_entry.250ml.button.label" = "250 ml (1 cup)";
+"add_drink_entry.500ml.button.label" = "500 ml (1 water bottle)";
+"add_drink_entry.1000ml.button.label" = "1 l";
+"add_drink_entry.1500ml.button.label" = "1.5 l";
+"add_drink_entry.custom.button.label" = "Custom quantity";
+

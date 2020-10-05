@@ -10,16 +10,19 @@ import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
+import SwiftDate
 
 class HomePageViewModel: ObservableObject {
     var authState: AuthenticationState
     let date = Date()
     let calendar = Calendar.current
     let startTime: Date
+    let endTime: Date
 
     init(authState: AuthenticationState) {
         self.authState = authState
-        startTime = calendar.startOfDay(for: self.date)
+        self.startTime = calendar.startOfDay(for: self.date)
+        self.endTime = calendar.startOfDay(for: self.date + 1.days)
 
         self.readUser()
         self.readDrinkEntries()
@@ -50,8 +53,7 @@ class HomePageViewModel: ObservableObject {
                 .document(authUser.uid)
                 .collection("drink-entries")
                 .whereField("time", isGreaterThanOrEqualTo: startTime)
-                .whereField("time", isLessThanOrEqualTo: Date())
-                .order(by: "time", descending: true)
+                .whereField("time", isLessThanOrEqualTo: endTime)
                 .addSnapshotListener { (snapshot, _) in
                     self.quantityDrinkedToday = 0
                     snapshot?.documents.forEach { documentSnapshot in
@@ -61,6 +63,16 @@ class HomePageViewModel: ObservableObject {
                     }
                 }
         }
+    }
 
+    func addDrinkEntry(quantity: Int) {
+        if let authUser = authState.loggedInUser {
+            //FIXME: should display error
+            _ = try? database
+                .collection("users")
+                .document(authUser.uid)
+                .collection("drink-entries")
+                .addDocument(from: DrinkEntry(time: Timestamp.init(date: Date()), quantity: quantity))
+        }
     }
 }

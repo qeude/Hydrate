@@ -72,6 +72,15 @@
           "revision": "c5cdb6bdc2d3db8ef81e3bc71d55d31baf638837",
           "version": "1.2.10"
         }
+      },
+      {
+        "package": "SwiftDate",
+        "repositoryURL": "https://github.com/malcommac/SwiftDate.git",
+        "state": {
+          "branch": null,
+          "revision": "a25913b19833860b61fac161a706e44834f03c47",
+          "version": "6.2.0"
+        }
       }
     ]
   },
