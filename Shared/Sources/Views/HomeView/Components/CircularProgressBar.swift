@@ -12,7 +12,7 @@ struct CircularProgressBar<Content: View>: View {
     let user: DbUser
     let content: Content
 
-    var centerCircleCoefficient: CGFloat = 0.80
+    var centerCircleCoefficient: CGFloat = 0.85
     var deltaCenterCircleCoefficient: CGFloat {
         return ((1 - self.centerCircleCoefficient) / 2) + centerCircleCoefficient
     }
@@ -31,15 +31,15 @@ struct CircularProgressBar<Content: View>: View {
                     .foregroundColor(Color.lighterBackground)
                     .overlay(
                         Circle()
-                            .stroke(Color.darkShadow, lineWidth: 7)
-                            .blur(radius: 10)
+                            .stroke(Color.darkShadow.opacity(0.15), lineWidth: 5)
+                            .blur(radius: 3)
                             .offset(x: 2, y: 2)
                             .mask(Circle().fill(LinearGradient(Color.darkShadow, Color.clear)))
                     )
                     .overlay(
                         Circle()
-                            .stroke(Color.lightShadow, lineWidth: 12)
-                            .blur(radius: 5)
+                            .stroke(Color.lightShadow, lineWidth: 5)
+                            .blur(radius: 3)
                             .offset(x: -2, y: -2)
                             .mask(Circle().fill(LinearGradient(Color.clear, Color.darkShadow
                             )))
@@ -51,8 +51,8 @@ struct CircularProgressBar<Content: View>: View {
                             .frame(width: geo.size.width * centerCircleCoefficient,
                                    height: geo.size.height * centerCircleCoefficient)
                             .foregroundColor(Color.background)
-                            .shadow(color: Color.darkShadow.opacity(0.3), radius: 10, x: 5, y: 5)
-                            .shadow(color: Color.lightShadow.opacity(0.7), radius: 10, x: -5, y: -5)
+                            .shadow(color: Color.darkShadow.opacity(0.15), radius: 3, x: 2, y: 2)
+                            .shadow(color: Color.lightShadow.opacity(0.20), radius: 3, x: -2, y: -2)
                     )
 
                 Circle()
@@ -60,7 +60,7 @@ struct CircularProgressBar<Content: View>: View {
                     .stroke(style: StrokeStyle(lineWidth: geo.size.width - geo.size.width * deltaCenterCircleCoefficient,
                                                lineCap: .round, lineJoin: .round))
                     .rotationEffect(Angle(degrees: 270.0))
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.primary)
                     .frame(width: geo.size.width * deltaCenterCircleCoefficient,
                            height: geo.size.height * deltaCenterCircleCoefficient)
 
