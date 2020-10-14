@@ -27,8 +27,9 @@ struct HomeView: View {
             ScrollView {
                 if let user = homeViewModel.user, let dailyGoal = homeViewModel.user?.dailyGoal {
                     VStack {
-                        CircularProgressBar(progress: Float(homeViewModel.quantityDrinkedToday) / Float(dailyGoal),
-                                            user: user) {
+                        CircleWaveView(percent:
+                                        homeViewModel.progress,
+                                       user: user) {
                             VStack {
                                 Text(L10n.CircularProgress.Drunk.label)
                                     .font(.system(size: 12))
@@ -64,6 +65,9 @@ struct HomeView: View {
                     }
                     Button(L10n.AddDrinkEntry._1500ml.Button.label) {
                         homeViewModel.addDrinkEntry(quantity: 1500)
+                    }
+                    Button("Reset") {
+                        homeViewModel.resetDrinkEntriesForToday()
                     }
                     Button(L10n.AddDrinkEntry.Custom.Button.label, action: {})
                 } label: {

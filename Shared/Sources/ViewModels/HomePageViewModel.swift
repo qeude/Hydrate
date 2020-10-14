@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import SwiftDate
+import SwiftUI
 
 class HomePageViewModel: ObservableObject {
     var authState: AuthenticationState
@@ -29,8 +30,9 @@ class HomePageViewModel: ObservableObject {
     }
 
     @Published var user: DbUser?
-    @Published var quantityDrinkedToday: Int = 0
+    @Published var quantityDrinkedToday = 0
     @Published var drinkEntries: [DrinkEntry] = []
+    @Published var progress: CGFloat = 0
 
     let database = Firestore.firestore()
 
@@ -59,6 +61,7 @@ class HomePageViewModel: ObservableObject {
                     snapshot?.documents.forEach { documentSnapshot in
                         if let drinkEntry = try? documentSnapshot.data(as: DrinkEntry.self) {
                             self.quantityDrinkedToday += drinkEntry.quantity
+                            self.progress = CGFloat(self.quantityDrinkedToday) / CGFloat(self.user?.dailyGoal ?? 2000) * 100
                         }
                     }
                 }
@@ -73,6 +76,26 @@ class HomePageViewModel: ObservableObject {
                 .document(authUser.uid)
                 .collection("drink-entries")
                 .addDocument(from: DrinkEntry(time: Timestamp.init(date: Date()), quantity: quantity))
+        }
+    }
+
+    func resetDrinkEntriesForToday() {
+        if let authUser = authState.loggedInUser {
+            database
+                .collection("users")
+                .document(authUser.uid)
+                .collection("drink-entries")
+                .whereField("time", isGreaterThanOrEqualTo: startTime)
+                .whereField("time", isLessThanOrEqualTo: endTime)
+                .getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        querySnapshot?.documents.forEach { document in
+                            document.reference.delete()
+                        }
+                    }
+                }
         }
     }
 }

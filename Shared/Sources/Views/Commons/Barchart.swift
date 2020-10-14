@@ -129,7 +129,7 @@ struct BarView: View {
 
                     Capsule()
                         .frame(width: width, height: CGFloat(CGFloat(Float(value) / Float(maxValue)) * geo.size.height))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.primaryBlue)
                 }
                 Text(day)
                     .foregroundColor(.primaryText)
@@ -146,15 +146,15 @@ struct LabelView: View {
         VStack {
             ZStack {
                 ArrowDown()
-                    .fill(Color.white)
+                    .fill(Color.lightBackground)
                     .frame(width: 20, height: 12, alignment: .center)
-                    .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
+                    .shadow(color: Color.mediumShadow, radius: 8, x: 0, y: 0)
                     .offset(x: getArrowOffset(offset: self.arrowOffset), y: 20)
                 RoundedRectangle(cornerRadius: 8).frame(width: 100, height: 32, alignment: .center)
-                    .foregroundColor(Color.white).shadow(radius: 8)
+                    .foregroundColor(Color.lightBackground).shadow(color: Color.mediumShadow, radius: 8)
                 Text(self.title).font(.caption).bold()
                 ArrowDown()
-                    .fill(Color.white)
+                    .fill(Color.lightBackground)
                     .frame(width: 20, height: 12, alignment: .center)
                     .zIndex(999)
                     .offset(x: getArrowOffset(offset: self.arrowOffset), y: 20)

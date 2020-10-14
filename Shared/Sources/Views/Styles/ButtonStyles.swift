@@ -12,7 +12,7 @@ struct PrimaryButtonStyle: ButtonStyle {
         configuration.label
             .frame(height: 44)
             .foregroundColor(Color.white)
-            .background(Color.primary)
+            .background(Color.primaryBlue)
             .cornerRadius(50)
     }
 }
