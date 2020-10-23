@@ -8,15 +8,9 @@
 import SwiftUI
 
 struct Barchart: View {
-    var data: [(String, Double)] = [
-        (Date(timeIntervalSince1970: 1601300643).weekdayName(.veryShort), 3000), //28 sept
-        (Date(timeIntervalSince1970: 1601387043).weekdayName(.veryShort), 2000), //29 sept
-        (Date(timeIntervalSince1970: 1601473443).weekdayName(.veryShort), 500), //30 sept
-        (Date(timeIntervalSince1970: 1601559843).weekdayName(.veryShort), 1750), //1 oct
-        (Date(timeIntervalSince1970: 1601646243).weekdayName(.veryShort), 2000), //2 oct
-        (Date(timeIntervalSince1970: 1601732643).weekdayName(.veryShort), 1000), //3 oct
-        (Date(timeIntervalSince1970: 1601819043).weekdayName(.veryShort), 1250) //4 oct
-    ]
+    var data: [(String, Double)]
+    var maxValue: Double
+    var labelSuffix: String
 
     @State private var touchLocation: CGFloat = -1.0
     @State private var showValue: Bool = false
@@ -30,7 +24,7 @@ struct Barchart: View {
                     HStack(alignment: .center) {
                         ForEach(Array(data.enumerated()), id: \.0) { index, item in
                             Spacer()
-                            BarView(maxValue: data.max { $0.1 < $1.1 }?.1 ?? 0,
+                            BarView(maxValue: maxValue,
                                     value: item.1,
                                     day: item.0,
                                     width: getBarviewWidth(width: geo.size.width)
@@ -62,7 +56,7 @@ struct Barchart: View {
                 .animation(.default)
                 if self.showLabelValue && self.getCurrentValue(width: geo.size.width) != nil {
                     LabelView(arrowOffset: self.getArrowOffset(width: geo.size.width),
-                              title: "\(String(format: "%.0f", self.getCurrentValue(width: geo.size.width) ?? 0))")
+                              title: "\(String(format: "%.0f", self.getCurrentValue(width: geo.size.width) ?? 0)) \(self.labelSuffix)")
                         .offset(x: self.getLabelViewOffset(width: geo.size.width), y: -6)
                         .foregroundColor(.primaryText)
                 }
@@ -142,6 +136,7 @@ struct BarView: View {
 struct LabelView: View {
     var arrowOffset: CGFloat
     var title: String
+
     var body: some View {
         VStack {
             ZStack {
@@ -180,6 +175,14 @@ struct ArrowDown: Shape {
 
 struct Barchart_Previews: PreviewProvider {
     static var previews: some View {
-        Barchart()
+        Barchart(data: [
+            (Date(timeIntervalSince1970: 1601300643).weekdayName(.veryShort), 3000), //28 sept
+            (Date(timeIntervalSince1970: 1601387043).weekdayName(.veryShort), 2000), //29 sept
+            (Date(timeIntervalSince1970: 1601473443).weekdayName(.veryShort), 500), //30 sept
+            (Date(timeIntervalSince1970: 1601559843).weekdayName(.veryShort), 1750), //1 oct
+            (Date(timeIntervalSince1970: 1601646243).weekdayName(.veryShort), 2000), //2 oct
+            (Date(timeIntervalSince1970: 1601732643).weekdayName(.veryShort), 1000), //3 oct
+            (Date(timeIntervalSince1970: 1601819043).weekdayName(.veryShort), 1250) //4 oct
+        ], maxValue: 2000, labelSuffix: "ml")
     }
 }

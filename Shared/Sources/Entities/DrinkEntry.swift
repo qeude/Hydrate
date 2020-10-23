@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 struct DrinkEntry: Codable {
     @DocumentID var id: String?
     @ServerTimestamp var time: Timestamp?
-    var quantity: Int
+    var quantity: Double
 
     enum CodingKeys: String, CodingKey {
         case id

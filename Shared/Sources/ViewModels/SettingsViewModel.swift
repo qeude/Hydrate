@@ -23,7 +23,7 @@ class SettingsViewModel: ObservableObject {
 
     @Published var user: DbUser?
     @Published var firstname: String = ""
-    @Published var dailyGoal: Int = 0
+    @Published var dailyGoal: Double = 0
     @Published var isLoaded = false
 
     let database = Firestore.firestore()

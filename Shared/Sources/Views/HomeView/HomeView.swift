@@ -43,7 +43,7 @@ struct HomeView: View {
                             }
                         }
                         .frame(width: 200, height: 200, alignment: .center)
-                        Barchart().frame(height: 150).padding(48)
+                        Barchart(data: homeViewModel.barchartEntries, maxValue: homeViewModel.user?.dailyGoal ?? 0.0, labelSuffix: "ml").frame(height: 150).padding(48)
                         ForEach(homeViewModel.drinkEntries, id: \.id) { item in
                             Text("DrinkEntry (\(item.id ?? "")) at \(item.time!.dateValue()): \(item.quantity)")
                         }
