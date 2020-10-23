@@ -15,7 +15,16 @@ struct ContentView: View {
         ZStack {
             Color.background.edgesIgnoringSafeArea(.all)
             if authState.loggedInUser != nil && !showSplashScreen {
-                HomeView()
+                TabView {
+                    HomeView().tabItem {
+                        Image(systemName: "house")
+                        Text(L10n.Tab.Home.item)
+                    }
+                    SettingsView().tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                }
             } else {
                 AuthenticationView(authType: .login)
             }

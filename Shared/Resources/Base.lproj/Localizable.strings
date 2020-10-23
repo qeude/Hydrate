@@ -12,6 +12,13 @@
 
 // MARK: Common
 "common.error" = "Error";
+"common.edit" = "Edit";
+"common.save" = "Save";
+
+
+// MARK: Tabs
+"tab.home.item" = "Home";
+"tab.settings.item" = "Settings";
 
 
 // MARK: Auth
@@ -38,3 +45,10 @@
 "add_drink_entry.1500ml.button.label" = "1.5 l";
 "add_drink_entry.custom.button.label" = "Custom quantity";
 
+
+// MARK: Settings
+"settings.title.text" = "Settings";
+"settings.dailyGoal.label.text" = "Daily Goal";
+"settings.dailyGoal.value" = "%@ %@";
+"settings.firstname.label.text" = "Firstname";
+"settings.firstname.placeholder.text" = "Enter your firstname";

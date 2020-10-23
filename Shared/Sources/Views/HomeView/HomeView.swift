@@ -71,7 +71,7 @@ struct HomeView: View {
                     }
                     Button(L10n.AddDrinkEntry.Custom.Button.label, action: {})
                 } label: {
-                    Image(systemName: "plus").font(.system(size: 18))
+                    Image(systemName: "plus.circle").font(.system(size: 20))
                 }
             })
         }
