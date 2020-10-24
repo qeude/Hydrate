@@ -14,28 +14,32 @@ import SwiftDate
 import SwiftUI
 
 class HomePageViewModel: ObservableObject {
+    let database = Firestore.firestore()
+
     var authState: AuthenticationState
     let date = Date()
     let calendar = Calendar.current
-    let startTime: Date
-    let endTime: Date
-
-    init(authState: AuthenticationState) {
-        self.authState = authState
-        self.startTime = calendar.startOfDay(for: self.date)
-        self.endTime = calendar.startOfDay(for: self.date + 1.days)
-
-        self.readUser()
-        self.readDrinkEntries()
-    }
+    let startOfToday: Date
+    let endOfToday: Date
 
     @Published var user: DbUser?
     @Published var quantityDrinkedToday: Double = 0
     @Published var drinkEntries: [DrinkEntry] = []
     @Published var progress: CGFloat = 0
     @Published var barchartEntries: [(String, Double)] = []
+    @Published var barchartStartDate: Date
+    @Published var barchartEndDate: Date
 
-    let database = Firestore.firestore()
+    init(authState: AuthenticationState) {
+        self.authState = authState
+        self.startOfToday = calendar.startOfDay(for: self.date)
+        self.endOfToday = calendar.startOfDay(for: self.date + 1.days)
+        self.barchartStartDate = startOfToday - 7.days
+        self.barchartEndDate = startOfToday
+
+        self.readUser()
+        self.readDrinkEntries()
+    }
 
     func readUser() {
         if let authUser = authState.loggedInUser {
@@ -55,8 +59,8 @@ class HomePageViewModel: ObservableObject {
                 .collection("users")
                 .document(authUser.uid)
                 .collection("drink-entries")
-                .whereField("time", isGreaterThanOrEqualTo: startTime)
-                .whereField("time", isLessThanOrEqualTo: endTime)
+                .whereField("time", isGreaterThanOrEqualTo: startOfToday)
+                .whereField("time", isLessThanOrEqualTo: endOfToday)
                 .addSnapshotListener { (snapshot, _) in
                     self.quantityDrinkedToday = 0
                     snapshot?.documents.forEach { documentSnapshot in
@@ -71,14 +75,14 @@ class HomePageViewModel: ObservableObject {
                 .collection("users")
                 .document(authUser.uid)
                 .collection("drink-entries")
-                .whereField("time", isGreaterThanOrEqualTo: startTime - 7.days)
-                .whereField("time", isLessThanOrEqualTo: endTime)
+                .whereField("time", isGreaterThanOrEqualTo: self.barchartStartDate)
+                .whereField("time", isLessThanOrEqualTo: self.barchartEndDate)
                 .addSnapshotListener { (snapshot, _) in
                     self.barchartEntries = []
                     var entries: [Date: Double] = [:]
-                    for dayNumber in (0...7).reversed() {
+                    for dayNumber in (1...7).reversed() {
                         let components = Calendar.current.dateComponents([.year, .month, .day],
-                                                                         from: self.startTime - dayNumber.days)
+                                                                         from: self.startOfToday - dayNumber.days)
                         if let date = Calendar.current.date(from: components) {
                             entries[date] = 0.0
                         }
@@ -126,8 +130,8 @@ class HomePageViewModel: ObservableObject {
                 .collection("users")
                 .document(authUser.uid)
                 .collection("drink-entries")
-                .whereField("time", isGreaterThanOrEqualTo: startTime)
-                .whereField("time", isLessThanOrEqualTo: endTime)
+                .whereField("time", isGreaterThanOrEqualTo: startOfToday)
+                .whereField("time", isLessThanOrEqualTo: endOfToday)
                 .getDocuments { (querySnapshot, error) in
                     if let error = error {
                         print("Error getting documents: \(error)")
@@ -138,5 +142,25 @@ class HomePageViewModel: ObservableObject {
                     }
                 }
         }
+    }
+
+    func getBarchartLabel() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return "\(formatter.string(from: self.barchartStartDate)) - \(formatter.string(from: self.barchartEndDate))"
+    }
+
+    // swiftlint:disable shorthand_operator
+    func setPreviousWeekBarchart() {
+        self.barchartStartDate = self.barchartStartDate - 7.days
+        self.barchartEndDate = self.barchartEndDate - 7.days
+        self.readDrinkEntries()
+    }
+
+    // swiftlint:disable shorthand_operator
+    func setNextWeekBarchart() {
+        self.barchartStartDate = self.barchartStartDate + 7.days
+        self.barchartEndDate = self.barchartEndDate + 7.days
+        self.readDrinkEntries()
     }
 }

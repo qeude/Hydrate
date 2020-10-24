@@ -34,16 +34,29 @@ struct HomeView: View {
                                 Text(L10n.CircularProgress.Drunk.label)
                                     .font(.system(size: 12))
                                     .foregroundColor(.secondaryText)
-                                Text(L10n.CircularProgress.Drunk.Quantity.label(homeViewModel.quantityDrinkedToday))
+                                Text(L10n.CircularProgress.Drunk.Quantity.label(String(format: "%.0f", homeViewModel.quantityDrinkedToday)))
                                     .font(.system(size: 18, weight: Font.Weight.bold))
                                     .foregroundColor(.primaryText)
-                                Text(L10n.CircularProgress.Drunk.Target.label(dailyGoal))
+                                Text(L10n.CircularProgress.Drunk.Target.label(String(format: "%.0f", dailyGoal)))
                                     .font(.system(size: 12))
                                     .foregroundColor(.secondaryText)
                             }
                         }
                         .frame(width: 200, height: 200, alignment: .center)
-                        Barchart(data: homeViewModel.barchartEntries, maxValue: homeViewModel.user?.dailyGoal ?? 0.0, labelSuffix: "ml").frame(height: 150).padding(48)
+                        .padding()
+
+                        DateChooserView(label: homeViewModel.getBarchartLabel(),
+                                        leftAction: homeViewModel.setPreviousWeekBarchart,
+                                        rightAction: homeViewModel.setNextWeekBarchart,
+                                        leftButtonDisable: false,
+                                        rightButtonDisable: homeViewModel.barchartEndDate.isYesterday)
+                            .padding(.top, 24)
+                        Barchart(data: homeViewModel.barchartEntries,
+                                 maxValue: homeViewModel.user?.dailyGoal ?? 0.0,
+                                 labelSuffix: "ml")
+                            .frame(height: 150)
+                            .padding([.leading, .trailing], 48)
+
                         ForEach(homeViewModel.drinkEntries, id: \.id) { item in
                             Text("DrinkEntry (\(item.id ?? "")) at \(item.time!.dateValue()): \(item.quantity)")
                         }
