@@ -86,7 +86,7 @@ struct Barchart: View {
     }
 
     func getBarviewWidth(width: CGFloat) -> CGFloat {
-        return min(15, (width / CGFloat(self.data.count)) * 0.8)
+        return min(20, (width / CGFloat(self.data.count)) * 0.8)
     }
 }
 
@@ -105,14 +105,14 @@ struct BarView: View {
                         .foregroundColor(.lighterBackground)
                         .overlay(
                             Capsule()
-                                .stroke(Color.darkShadow.opacity(0.15), lineWidth: 5)
+                                .stroke(Color.darkShadow.opacity(0.15), lineWidth: 2)
                                 .blur(radius: 2)
                                 .offset(x: 2, y: 2)
                                 .mask(Capsule().fill(LinearGradient(Color.mediumShadow, Color.clear)))
                         )
                         .overlay(
                             Capsule()
-                                .stroke(Color.lightShadow, lineWidth: 5)
+                                .stroke(Color.lightShadow.opacity(0.9), lineWidth: 2)
                                 .blur(radius: 2)
                                 .offset(x: -2, y: -2)
                                 .mask(Capsule().fill(LinearGradient(Color.clear, Color.mediumShadow)))
@@ -122,8 +122,9 @@ struct BarView: View {
                         )
 
                     Capsule()
-                        .frame(width: width, height: CGFloat(CGFloat(Float(value) / Float(maxValue)) * geo.size.height))
-                        .foregroundColor(.primaryBlue)
+                        .frame(width: width,
+                               height: CGFloat(CGFloat(min(value, maxValue) / maxValue) * geo.size.height))
+                        .foregroundColor(.blue)
                 }
                 Text(day)
                     .foregroundColor(.primaryText)
@@ -178,11 +179,11 @@ struct Barchart_Previews: PreviewProvider {
         Barchart(data: [
             (Date(timeIntervalSince1970: 1601300643).weekdayName(.veryShort), 3000), //28 sept
             (Date(timeIntervalSince1970: 1601387043).weekdayName(.veryShort), 2000), //29 sept
-            (Date(timeIntervalSince1970: 1601473443).weekdayName(.veryShort), 500), //30 sept
+            (Date(timeIntervalSince1970: 1601473443).weekdayName(.veryShort), 0), //30 sept
             (Date(timeIntervalSince1970: 1601559843).weekdayName(.veryShort), 1750), //1 oct
             (Date(timeIntervalSince1970: 1601646243).weekdayName(.veryShort), 2000), //2 oct
             (Date(timeIntervalSince1970: 1601732643).weekdayName(.veryShort), 1000), //3 oct
             (Date(timeIntervalSince1970: 1601819043).weekdayName(.veryShort), 1250) //4 oct
-        ], maxValue: 2000, labelSuffix: "ml")
+        ], maxValue: 2000, labelSuffix: "ml").frame(height: 150)
     }
 }

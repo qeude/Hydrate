@@ -45,7 +45,7 @@ struct CircleWaveView<Content: View>: View {
                     .stroke(Color.clear)
                     .overlay(
                         Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
-                            .fill(Color.primaryBlue.opacity(1))
+                            .fill(Color.blue)
                             .clipShape(Circle())
                             .animation(self.waveOffset == Angle(degrees: 0)
                                         ? .default
@@ -63,7 +63,6 @@ struct CircleWaveView<Content: View>: View {
             self.waveOffset = Angle(degrees: 360)
         }
         .onChange(of: percent, perform: { _ in
-            print("changed value")
             self.waveOffset = Angle(degrees: 0)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.waveOffset = Angle(degrees: 360)

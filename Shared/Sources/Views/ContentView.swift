@@ -20,9 +20,13 @@ struct ContentView: View {
                         Image(systemName: "house")
                         Text(L10n.Tab.Home.item)
                     }
+                    ReportsView().tabItem {
+                        Image(systemName: "chart.pie")
+                        Text(L10n.Tab.Reports.item)
+                    }
                     SettingsView().tabItem {
                         Image(systemName: "gear")
-                        Text("Settings")
+                        Text(L10n.Tab.Settings.item)
                     }
                 }
             } else {

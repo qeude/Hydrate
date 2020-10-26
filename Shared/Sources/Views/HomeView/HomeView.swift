@@ -10,62 +10,75 @@ import FirebaseAuth
 
 struct HomeView: View {
     @EnvironmentObject var authState: AuthenticationState
+    @ObservedObject var homeViewModel = HomeViewModel()
+
     var body: some View {
-        Observe(obj: HomePageViewModel(authState: authState)) { homeViewModel in
-            Group {
-                #if os(iOS)
-                iOSBody(homeViewModel: homeViewModel)
-                #elseif os(macOS)
-                macOSBody(homeViewModel: homeViewModel)
-                #endif
-            }
+        Group {
+            #if os(iOS)
+            iOSBody(homeViewModel: homeViewModel)
+            #elseif os(macOS)
+            macOSBody(homeViewModel: homeViewModel)
+            #endif
+        }.onAppear {
+            homeViewModel.start(authState: authState)
         }
     }
 
-    private func iOSBody(homeViewModel: HomePageViewModel) -> some View {
+    private func iOSBody(homeViewModel: HomeViewModel) -> some View {
         return NavigationView {
             ScrollView {
-                if let user = homeViewModel.user, let dailyGoal = homeViewModel.user?.dailyGoal {
-                    VStack {
+                VStack(alignment: .center, spacing: 24) {
+                    if let user = homeViewModel.user, let dailyGoal = homeViewModel.user?.dailyGoal {
                         CircleWaveView(percent:
                                         homeViewModel.progress,
                                        user: user) {
                             VStack {
                                 Text(L10n.CircularProgress.Drunk.label)
-                                    .font(.system(size: 12))
+                                    .font(.system(size: 13))
                                     .foregroundColor(.secondaryText)
                                 Text(L10n.CircularProgress.Drunk.Quantity.label(String(format: "%.0f", homeViewModel.quantityDrinkedToday)))
-                                    .font(.system(size: 18, weight: Font.Weight.bold))
+                                    .font(.system(size: 22, weight: Font.Weight.bold))
                                     .foregroundColor(.primaryText)
                                 Text(L10n.CircularProgress.Drunk.Target.label(String(format: "%.0f", dailyGoal)))
-                                    .font(.system(size: 12))
+                                    .font(.system(size: 13))
                                     .foregroundColor(.secondaryText)
                             }
                         }
-                        .frame(width: 200, height: 200, alignment: .center)
+                        .frame(width: 200, height: 200)
                         .padding()
 
-                        DateChooserView(label: homeViewModel.getBarchartLabel(),
-                                        leftAction: homeViewModel.setPreviousWeekBarchart,
-                                        rightAction: homeViewModel.setNextWeekBarchart,
-                                        leftButtonDisable: false,
-                                        rightButtonDisable: homeViewModel.barchartEndDate.isYesterday)
-                            .padding(.top, 24)
-                        Barchart(data: homeViewModel.barchartEntries,
-                                 maxValue: homeViewModel.user?.dailyGoal ?? 0.0,
-                                 labelSuffix: "ml")
-                            .frame(height: 150)
-                            .padding([.leading, .trailing], 48)
-
-                        ForEach(homeViewModel.drinkEntries, id: \.id) { item in
-                            Text("DrinkEntry (\(item.id ?? "")) at \(item.time!.dateValue()): \(item.quantity)")
+                        VStack(alignment: .leading) {
+                            Text(L10n.Home.TodayEntries.title)
+                                .font(.system(size: 24, weight: Font.Weight.bold))
+                                .padding([.leading, .trailing], 16)
+                            VStack {
+                                if homeViewModel.todayDrinkEntries.isEmpty {
+                                    Text(L10n.Home.DrinkEntriesList.NoDrinkEntry.text)
+                                        .foregroundColor(.secondaryText)
+                                        .font(.system(size: 12))
+                                } else {
+                                    List {
+                                        ForEach(homeViewModel.todayDrinkEntries, id: \.id) { item in
+                                            DrinkEntryCell(drinkEntry: item)
+                                                .listRowBackground(Color.lightBackground)
+                                        }.onDelete { indexSet in
+                                            self.homeViewModel.removeDrinkEntry(at: indexSet)
+                                        }
+                                    }
+                                    .cornerRadius(20)
+                                    .frame(height: CGFloat(homeViewModel.todayDrinkEntries.count) * 55)
+                                }
+                            }
+                            .padding(16)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                    } else {
+                        EmptyView()
                     }
                 }
             }
-            .navigationTitle("Hello \(homeViewModel.user?.firstname ?? "")")
+            .navigationTitle(L10n.Home.Hello.label(homeViewModel.user?.firstname ?? ""))
             .navigationBarItems(trailing: HStack {
-                Button(L10n.Auth.Signout.button, action: signoutTapped)
                 Menu {
                     Button(L10n.AddDrinkEntry._250ml.Button.label) {
                         homeViewModel.addDrinkEntry(quantity: 250)
@@ -84,13 +97,14 @@ struct HomeView: View {
                     }
                     Button(L10n.AddDrinkEntry.Custom.Button.label, action: {})
                 } label: {
-                    Image(systemName: "plus.circle").font(.system(size: 20))
+                    Image(systemName: "plus.circle")
+                        .font(.system(size: 24, weight: .semibold))
                 }
             })
         }
     }
 
-    private func macOSBody(homeViewModel: HomePageViewModel) -> some View {
+    private func macOSBody(homeViewModel: HomeViewModel) -> some View {
         return Text("MacOS 💻🎉").toolbar(content: {
             Button(L10n.Auth.Signout.button, action: signoutTapped)
         })
@@ -98,6 +112,27 @@ struct HomeView: View {
 
     private func signoutTapped() {
         authState.signout()
+    }
+}
+
+struct DrinkEntryCell: View {
+    let drinkEntry: DrinkEntry
+
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("\(drinkEntry.time!.dateValue(), formatter: Self.dateFormatter)")
+                .foregroundColor(.secondaryText)
+                .font(.system(size: 12))
+            Text("\(String(format: "%.0f", drinkEntry.quantity)) ml")
+                .foregroundColor(.primaryText)
+                .bold()
+        }.frame(height: 44)
     }
 }
 

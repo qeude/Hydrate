@@ -14,11 +14,15 @@
 "common.error" = "Error";
 "common.edit" = "Edit";
 "common.save" = "Save";
+"common.yes" = "Yes";
+"common.ok" = "Ok";
+"common.cancel" = "Cancel";
 
 
 // MARK: Tabs
 "tab.home.item" = "Home";
 "tab.settings.item" = "Settings";
+"tab.reports.item" = "Reports";
 
 
 // MARK: Auth
@@ -38,6 +42,12 @@
 "circular_progress.drunk.target.label" = "out of %@ ml target";
 
 
+// MARK: Home
+"home.hello.label" = "Hello, %@";
+"home.today_entries.title" = "Today's drink entries";
+"home.drink_entries_list.no_drink_entry.text" = "No drink entry yet.";
+
+
 // MARK: Add drink entry
 "add_drink_entry.250ml.button.label" = "250 ml (1 cup)";
 "add_drink_entry.500ml.button.label" = "500 ml (1 water bottle)";
@@ -52,3 +62,5 @@
 "settings.dailyGoal.value" = "%@ %@";
 "settings.firstname.label.text" = "Firstname";
 "settings.firstname.placeholder.text" = "Enter your firstname";
+"settings.logout.confirmation.dialog.title" = "Logout";
+"settings.logout.confirmation.dialog.message" = "Are you sure you want to logout now ?";

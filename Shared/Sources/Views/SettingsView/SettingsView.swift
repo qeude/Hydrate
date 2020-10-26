@@ -11,6 +11,7 @@ struct SettingsView: View {
     @EnvironmentObject var authState: AuthenticationState
     @ObservedObject var settingsViewModel = SettingsViewModel()
     @State private var isEditable = false
+    @State private var showingLogoutConfirmation = false
 
     var body: some View {
         Group {
@@ -38,6 +39,17 @@ struct SettingsView: View {
                                 Text(L10n.Settings.DailyGoal.value(settingsViewModel.dailyGoal, "ml"))
                             }.disabled(!isEditable)
                         }
+                        Button(L10n.Auth.Signout.button) {
+                            self.showingLogoutConfirmation = true
+                        }
+                        .foregroundColor(Color.red)
+                    }.alert(isPresented: $showingLogoutConfirmation) {
+                        Alert(title: Text(L10n.Settings.Logout.Confirmation.Dialog.title),
+                              message: Text(L10n.Settings.Logout.Confirmation.Dialog.message),
+                              primaryButton: .destructive(Text(L10n.Common.ok), action: {
+                                self.signoutTapped()
+                              }),
+                              secondaryButton: .cancel(Text(L10n.Common.cancel)))
                     }
                 } else {
                     ProgressView()
@@ -59,6 +71,9 @@ struct SettingsView: View {
         return Text("MacOS 💻🎉")
     }
 
+    private func signoutTapped() {
+        authState.signout()
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
