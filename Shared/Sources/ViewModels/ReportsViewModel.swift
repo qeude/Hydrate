@@ -66,7 +66,7 @@ class ReportsViewModel: ObservableObject {
                     var entries: [Date: Double] = [:]
                     for dayNumber in (0...6).reversed() {
                         let components = Calendar.current.dateComponents([.year, .month, .day],
-                                                                         from: self.startOfToday - dayNumber.days)
+                                                                         from: self.barchartEndDate - dayNumber.days)
                         if let date = Calendar.current.date(from: components) {
                             entries[date] = 0.0
                         }
@@ -105,15 +105,15 @@ class ReportsViewModel: ObservableObject {
 
     // swiftlint:disable shorthand_operator
     func setPreviousWeekBarchart() {
-        self.barchartStartDate = self.barchartStartDate - 7.days
-        self.barchartEndDate = self.barchartEndDate - 7.days
+        self.barchartStartDate = self.barchartStartDate - 1.weeks
+        self.barchartEndDate = self.barchartEndDate - 1.weeks
         self.readDrinkEntries()
     }
 
     // swiftlint:disable shorthand_operator
     func setNextWeekBarchart() {
-        self.barchartStartDate = self.barchartStartDate + 7.days
-        self.barchartEndDate = self.barchartEndDate + 7.days
+        self.barchartStartDate = self.barchartStartDate + 1.weeks
+        self.barchartEndDate = self.barchartEndDate + 1.weeks
         self.readDrinkEntries()
     }
 }
