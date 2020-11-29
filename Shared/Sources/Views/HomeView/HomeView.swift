@@ -55,7 +55,7 @@ struct HomeView: View {
                             }
                         }
 
-                        Menu {
+                        Menu(content: {
                             Button(L10n.AddDrinkEntry._250ml.Button.label) {
                                 homeViewModel.addDrinkEntry(quantity: 250)
                             }
@@ -72,14 +72,13 @@ struct HomeView: View {
                                 homeViewModel.resetDrinkEntriesForToday()
                             }
                             Button(L10n.AddDrinkEntry.Custom.Button.label, action: {})
-                        } label: {
-                            Button(action: {}) {
+                        }, label: {
+                            Button(action: {}, label: {
                                 Text(L10n.Home.AddWater.Button.text)
                                     .frame(width: 150)
-                            }
+                            })
                             .buttonStyle(PrimaryButtonStyle())
-
-                        }
+                        })
 
                         VStack(alignment: .leading) {
                             Text(L10n.Home.TodayEntries.title)

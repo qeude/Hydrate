@@ -122,7 +122,12 @@ struct Wave: Shape {
 struct WaterWaveView_Previews: PreviewProvider {
     static var previews: some View {
         CircleWaveView(percent: CGFloat(51),
-                       user: DbUser(id: "test", time: nil, firstname: "Quentin", email: "test@test.fr", dailyGoal: 2000))                        .frame(width: 200, height: 200, alignment: .center)
-
+                       user: DbUser(
+                        id: "test",
+                        time: nil,
+                        firstname: "Quentin",
+                        email: "test@test.fr",
+                        dailyGoal: 2000))
+            .frame(width: 200, height: 200, alignment: .center)
     }
 }

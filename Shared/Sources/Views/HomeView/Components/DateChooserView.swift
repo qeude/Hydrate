@@ -30,11 +30,10 @@ struct DateChooserView: View {
 
 struct DateChooserView_Previews: PreviewProvider {
     static var previews: some View {
-        DateChooserView(label: "Date") {
+        DateChooserView(label: "Date", leftAction: {
             print("left")
-        } rightAction: {
+        }, rightAction: {
             print("right")
-        }
-
+        })
     }
 }

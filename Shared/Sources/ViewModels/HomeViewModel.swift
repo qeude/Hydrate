@@ -121,7 +121,7 @@ class HomeViewModel: ObservableObject {
                         print("Error getting documents: \(error)")
                     } else {
                         querySnapshot?.documents.forEach { document in
-                            document.reference.delete() 
+                            document.reference.delete()
                         }
                     }
                 }

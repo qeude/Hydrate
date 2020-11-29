@@ -182,7 +182,6 @@ class ReportsViewModel: ObservableObject {
         }
     }
 
-    // swiftlint:disable shorthand_operator
     func setPreviousDateAreaBarchart() {
         switch self.segmentedPickerPossibilities[self.selectedGranularity] {
         case .daily:
@@ -198,7 +197,6 @@ class ReportsViewModel: ObservableObject {
         self.readDrinkEntries()
     }
 
-    // swiftlint:disable shorthand_operator
     func setNextDateAreaBarchart() {
         switch self.segmentedPickerPossibilities[self.selectedGranularity] {
         case .daily:
