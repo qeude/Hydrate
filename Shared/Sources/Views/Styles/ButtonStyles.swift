@@ -12,7 +12,9 @@ struct PrimaryButtonStyle: ButtonStyle {
         configuration.label
             .frame(height: 44)
             .foregroundColor(Color.white)
-            .background(Color.blue)
+            .font(Font.body.bold())
+            .padding([.leading, .trailing], 16)
+            .background(LinearGradient(Color.primaryBlue.opacity(0.60), Color.primaryBlue, startPoint: .top, endPoint: .bottom))
             .cornerRadius(50)
     }
 }
@@ -22,7 +24,9 @@ struct SecondaryButtonStyle: ButtonStyle {
         configuration.label
             .frame(height: 44)
             .foregroundColor(Color.white)
-            .background(Color.secondary)
+            .font(Font.body.bold())
+            .padding([.leading, .trailing], 16)
+            .background(LinearGradient(Color.secondary.opacity(0.60), Color.secondary, startPoint: .top, endPoint: .bottom))
             .cornerRadius(50)
     }
 }

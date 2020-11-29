@@ -34,18 +34,24 @@
 "auth.signup.button" = "Sign up";
 "auth.signout.button" = "Sign out";
 "auth.notamember.button" = "Not a member ? Signup.";
+"auth.forgotpassword.button" = "Forgot your password ?";
 
 
 // MARK: Circular Progress
+"circular_progress.goal.label" = "Goal";
 "circular_progress.drunk.label" = "Drunk";
-"circular_progress.drunk.quantity.label" = "%@ ml";
-"circular_progress.drunk.target.label" = "out of %@ ml target";
+"circular_progress.quantity.label" = "%@ ml";
 
 
 // MARK: Home
 "home.hello.label" = "Hello, %@";
 "home.today_entries.title" = "Today's drink entries";
 "home.drink_entries_list.no_drink_entry.text" = "No drink entry yet.";
+"home.add_water.button.text" = "Add water";
+
+
+// MARK: Reports
+"reports.statistics.title" = "Statistics";
 
 
 // MARK: Add drink entry
@@ -64,3 +70,10 @@
 "settings.firstname.placeholder.text" = "Enter your firstname";
 "settings.logout.confirmation.dialog.title" = "Logout";
 "settings.logout.confirmation.dialog.message" = "Are you sure you want to logout now ?";
+
+
+// MARK: BarchartDateGranularity
+"barchart_date_granularity.daily.text" = "Daily";
+"barchart_date_granularity.monthly.text" = "Monthly";
+"barchart_date_granularity.annualy.text" = "Annualy";
+

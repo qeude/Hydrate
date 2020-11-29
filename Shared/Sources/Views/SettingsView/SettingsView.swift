@@ -56,14 +56,14 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(L10n.Settings.Title.text)
-            .navigationBarItems(trailing: HStack {
-                Button(isEditable ? L10n.Common.save : L10n.Common.edit) {
-                    if isEditable {
-                        settingsViewModel.saveSettings()
-                    }
-                    isEditable.toggle()
-                }
-            })
+//            .navigationBarItems(trailing: HStack {
+//                Button(isEditable ? L10n.Common.save : L10n.Common.edit) {
+//                    if isEditable {
+//                        settingsViewModel.saveSettings()
+//                    }
+//                    isEditable.toggle()
+//                }
+//            })
         }
     }
 

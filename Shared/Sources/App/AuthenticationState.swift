@@ -38,6 +38,16 @@ class AuthenticationState: NSObject, ObservableObject {
         }
     }
 
+    func sendForgotPassword(with email: String) {
+        auth.sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                print("error while sending password reset \(error.localizedDescription)")
+            } else {
+                print("sendPasswordReset succeed")
+            }
+        }
+    }
+
     func login(with loginOption: LoginOption) {
         self.isAuthenticating = true
         self.error = nil

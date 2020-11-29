@@ -45,7 +45,7 @@ struct CircleWaveView<Content: View>: View {
                     .stroke(Color.clear)
                     .overlay(
                         Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
-                            .fill(Color.blue)
+                            .fill(LinearGradient(Color.primaryBlue.opacity(0.30), Color.primaryBlue, startPoint: .top, endPoint: .bottom))
                             .clipShape(Circle())
                             .animation(self.waveOffset == Angle(degrees: 0)
                                         ? .default

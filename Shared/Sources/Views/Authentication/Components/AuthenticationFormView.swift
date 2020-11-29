@@ -24,6 +24,10 @@ struct AuthenticationFormView: View {
         }
     }
 
+    var isForgotPasswordButtonDisabled: Bool {
+        return email.isEmpty
+    }
+
     @Binding var authType: AuthenticationType
 
     var body: some View {
@@ -59,7 +63,6 @@ struct AuthenticationFormView: View {
 
             Button(action: emailAuthenticationTapped) {
                 Text(authType.text)
-                    .font(.callout)
                     .frame(maxWidth: .infinity)
 
             }
@@ -68,10 +71,18 @@ struct AuthenticationFormView: View {
 
             Button(action: footerButtonTapped) {
                 Text(authType.footerText)
-                    .font(.callout)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
+
+            if authType == .login {
+                Button(action: forgotPasswordTapped) {
+                    Text(L10n.Auth.Forgotpassword.button)
+                        .bold()
+                        .foregroundColor(.black)
+                        .disabled(isForgotPasswordButtonDisabled)
+                }.padding(.top, 20)
+            }
         }
         .padding(16)
         .textFieldStyle(PrimaryTextFieldStyle())
@@ -95,6 +106,10 @@ struct AuthenticationFormView: View {
     private func footerButtonTapped() {
         clearFormField()
         authType = authType == .signup ? .login : .signup
+    }
+
+    private func forgotPasswordTapped() {
+        authState.sendForgotPassword(with: email)
     }
 
     private func clearFormField() {

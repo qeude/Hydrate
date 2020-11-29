@@ -101,7 +101,7 @@ struct BarView: View {
             VStack {
                 ZStack(alignment: .bottom) {
                     Capsule()
-                        .frame(width: width, height: CGFloat(geo.size.height))
+                        .frame(width: width, height: CGFloat(geo.size.height - self.labelFontSize(width: geo.size.width)))
                         .foregroundColor(.lighterBackground)
                         .overlay(
                             Capsule()
@@ -123,14 +123,18 @@ struct BarView: View {
 
                     Capsule()
                         .frame(width: width,
-                               height: CGFloat(CGFloat(min(value, maxValue) / maxValue) * geo.size.height))
+                               height: CGFloat(CGFloat(min(value, maxValue) / maxValue) * (geo.size.height - labelFontSize(width: geo.size.width))))
                         .foregroundColor(.blue)
                 }
                 Text(day)
                     .foregroundColor(.primaryText)
-                    .font(.system(size: min(14, geo.size.width), weight: Font.Weight.bold))
+                    .font(.system(size: self.labelFontSize(width: geo.size.width), weight: Font.Weight.bold))
             }
         }
+    }
+
+    func labelFontSize(width: CGFloat) -> CGFloat {
+        return min(14, width)
     }
 }
 

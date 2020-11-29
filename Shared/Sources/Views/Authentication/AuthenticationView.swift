@@ -18,7 +18,8 @@ struct AuthenticationView: View {
             VStack(spacing: 10) {
                 Image.iconTransparentBackground
                     .resizable()
-                    .frame(width: 100, height: 100, alignment: .center)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 100, alignment: .center)
                 Text(L10n.App.name)
                     .font(.largeTitle)
                     .bold()
