@@ -86,7 +86,7 @@ struct Barchart: View {
     }
 
     func getBarviewWidth(width: CGFloat) -> CGFloat {
-        return min(20, (width / CGFloat(self.data.count)) * 0.8)
+        return min(25, (width / CGFloat(self.data.count)) * 0.8)
     }
 }
 
@@ -122,9 +122,9 @@ struct BarView: View {
                         )
 
                     Capsule()
+                        .fill(LinearGradient(Color.primaryBlue.opacity(0.60), Color.primaryBlue, startPoint: .top, endPoint: .bottom))
                         .frame(width: width,
                                height: CGFloat(CGFloat(min(value, maxValue) / maxValue) * (geo.size.height - labelFontSize(width: geo.size.width))))
-                        .foregroundColor(.blue)
                 }
                 Text(day)
                     .foregroundColor(.primaryText)
@@ -134,7 +134,7 @@ struct BarView: View {
     }
 
     func labelFontSize(width: CGFloat) -> CGFloat {
-        return min(14, width)
+        return min(10, width)
     }
 }
 

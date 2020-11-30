@@ -34,13 +34,15 @@ struct ReportsView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(16)
+
                     DateChooserView(label: reportsViewModel.getBarchartLabel(),
                                     leftAction: reportsViewModel.setPreviousDateAreaBarchart,
                                     rightAction: reportsViewModel.setNextDateAreaBarchart,
                                     leftButtonDisable: false,
-                                    rightButtonDisable: reportsViewModel.barchartEndDate?.isYesterday ?? true)
+                                    rightButtonDisable: reportsViewModel.barchartEndDate?.isToday ?? true)
+
                     Barchart(data: reportsViewModel.barchartEntries,
-                             maxValue: reportsViewModel.user?.dailyGoal ?? 0.0,
+                             maxValue: reportsViewModel.barchartMaxValue,
                              labelSuffix: "ml")
                         .frame(height: 150)
                         .padding([.leading, .trailing], 24)

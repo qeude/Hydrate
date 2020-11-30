@@ -23,6 +23,7 @@ class ReportsViewModel: ObservableObject {
     let endOfToday: Date
 
     @Published var user: DbUser?
+    @Published var barchartMaxValue: Double = 2000
     @Published var barchartEntries: [(String, Double)] = []
     @Published var barchartStartDate: Date?
     @Published var barchartEndDate: Date?
@@ -37,8 +38,8 @@ class ReportsViewModel: ObservableObject {
     }
 
     init() {
-        self.startOfToday = calendar.startOfDay(for: self.date)
-        self.endOfToday = startOfToday.dateAtEndOf(.day)
+        self.startOfToday = self.date.dateAtStartOf(.day)
+        self.endOfToday = self.date.dateAtEndOf(.day)
     }
 
     func start(authState: AuthenticationState) {
@@ -85,24 +86,19 @@ class ReportsViewModel: ObservableObject {
     private func initEntries() -> [Date: Double] {
         var entries: [Date: Double] = [:]
         for number in (0...6).reversed() {
-            let components: Set<Calendar.Component>
             let fromDate: Date
             switch self.segmentedPickerPossibilities[self.selectedGranularity] {
             case .annualy:
-                components = [.year]
-                fromDate = self.barchartEndDate! - number.years
+                fromDate = (self.barchartEndDate! - number.years).dateAtEndOf(.year)
+                self.barchartMaxValue = 365 * (self.user?.dailyGoal ?? 2000)
             case .monthly:
-                components = [.year, .month]
-                fromDate = self.barchartEndDate! - number.months
+                fromDate = (self.barchartEndDate! - number.months).dateAtEndOf(.month)
+                self.barchartMaxValue = 31 * (self.user?.dailyGoal ?? 2000)
             case .daily:
-                components = [.year, .month, .day]
                 fromDate = self.barchartEndDate! - number.days
+                self.barchartMaxValue = self.user?.dailyGoal ?? 2000
             }
-            let dateComponents = Calendar.current.dateComponents(components,
-                                                                 from: fromDate)
-            if let date = Calendar.current.date(from: dateComponents) {
-                entries[date] = 0.0
-            }
+            entries[fromDate] = 0.0
         }
         return entries
     }
@@ -110,23 +106,21 @@ class ReportsViewModel: ObservableObject {
     private func process(entry: DrinkEntry, in entries: [Date: Double]) -> [Date: Double] {
         var entries = entries
         if let drinkEntryDate = entry.time?.dateValue() {
-            let components: Set<Calendar.Component>
+            var granularity: Calendar.Component
             switch self.segmentedPickerPossibilities[self.selectedGranularity] {
             case .annualy:
-                components = [.year]
+                granularity = .year
             case .monthly:
-                components = [.year, .month]
+                granularity = .month
             case .daily:
-                components = [.year, .month, .day]
+                granularity = .day
             }
-            let dateComponents = Calendar.current.dateComponents(components,
-                                                                 from: drinkEntryDate)
-            if let date = Calendar.current.date(from: dateComponents),
-               entries[date] != nil {
-                entries[date]! += entry.quantity
+            if entries[drinkEntryDate.dateAtEndOf(granularity)] != nil {
+                entries[drinkEntryDate.dateAtEndOf(granularity)]! += entry.quantity
+            } else {
+                entries[drinkEntryDate.dateAtEndOf(granularity)] = entry.quantity
             }
         }
-
         return entries
     }
 
@@ -145,7 +139,8 @@ class ReportsViewModel: ObservableObject {
                     return t1.0.isBeforeDate(t2.0, granularity: .day)
 
                 }
-            }.map { value -> (String, Double) in
+            }
+            .map { value -> (String, Double) in
                 switch self.segmentedPickerPossibilities[self.selectedGranularity] {
                 case .annualy:
                     return ("\(value.0.year)", value.1)
@@ -161,7 +156,7 @@ class ReportsViewModel: ObservableObject {
         switch self.segmentedPickerPossibilities[self.selectedGranularity] {
         case .daily:
             self.barchartStartDate = startOfToday - 6.days
-            self.barchartEndDate = startOfToday
+            self.barchartEndDate = endOfToday
         case .monthly:
             self.barchartStartDate = (startOfToday - 6.months).dateAtStartOf(.month)
             self.barchartEndDate = startOfToday.dateAtEndOf(.month)
@@ -173,7 +168,14 @@ class ReportsViewModel: ObservableObject {
 
     func getBarchartLabel() -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        switch self.segmentedPickerPossibilities[self.selectedGranularity] {
+        case .daily:
+            formatter.dateStyle = .medium
+        case .monthly:
+            formatter.dateFormat = "MMM yyyy"
+        case .annualy:
+            formatter.dateFormat = "yyyy"
+        }
         if let startDate = self.barchartStartDate,
            let endDate = self.barchartEndDate {
             return "\(formatter.string(from: startDate)) - \(formatter.string(from: endDate))"
