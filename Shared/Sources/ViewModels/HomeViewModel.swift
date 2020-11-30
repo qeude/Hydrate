@@ -107,24 +107,4 @@ class HomeViewModel: ObservableObject {
             }
         }
     }
-
-    func resetDrinkEntriesForToday() {
-        if let authUser = authState?.loggedInUser {
-            database
-                .collection("users")
-                .document(authUser.uid)
-                .collection("drink-entries")
-                .whereField("time", isGreaterThanOrEqualTo: startOfToday)
-                .whereField("time", isLessThanOrEqualTo: endOfToday)
-                .getDocuments { (querySnapshot, error) in
-                    if let error = error {
-                        print("Error getting documents: \(error)")
-                    } else {
-                        querySnapshot?.documents.forEach { document in
-                            document.reference.delete()
-                        }
-                    }
-                }
-        }
-    }
 }

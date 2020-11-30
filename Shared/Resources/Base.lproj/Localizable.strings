@@ -77,3 +77,8 @@
 "barchart_date_granularity.monthly.text" = "Monthly";
 "barchart_date_granularity.annualy.text" = "Annualy";
 
+
+// MARK: AddCustom
+"add_custom.title.text" = "Add custom quantity";
+"add_custom.quantity.placeholder.text" = "Quantity";
+"add_custom.add.button.text" = "Add";

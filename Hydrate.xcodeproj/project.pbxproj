@@ -29,6 +29,10 @@
 		016FF4ED2573060300971D07 /* BarchartDateGranularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012EC7B3254996A50008BD28 /* BarchartDateGranularity.swift */; };
 		016FF514257414F600971D07 /* DrinkEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016FF513257414F600971D07 /* DrinkEntryCell.swift */; };
 		016FF515257414F600971D07 /* DrinkEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016FF513257414F600971D07 /* DrinkEntryCell.swift */; };
+		016FF53325756BE900971D07 /* AddCustomDrinkQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016FF53225756BE900971D07 /* AddCustomDrinkQuantityView.swift */; };
+		016FF53425756BE900971D07 /* AddCustomDrinkQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016FF53225756BE900971D07 /* AddCustomDrinkQuantityView.swift */; };
+		016FF53A25756BF700971D07 /* AddCustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016FF53925756BF700971D07 /* AddCustomViewModel.swift */; };
+		016FF53B25756BF700971D07 /* AddCustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016FF53925756BF700971D07 /* AddCustomViewModel.swift */; };
 		017525B3252A038900E72E76 /* Barchart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017525B2252A038900E72E76 /* Barchart.swift */; };
 		017525B4252A038900E72E76 /* Barchart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017525B2252A038900E72E76 /* Barchart.swift */; };
 		0177B6A22520D29200069F83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177F4AB251D3F44007ED465 /* Strings.swift */; };
@@ -113,6 +117,8 @@
 		012EC7AD254848340008BD28 /* StatisticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCell.swift; sourceTree = "<group>"; };
 		012EC7B3254996A50008BD28 /* BarchartDateGranularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarchartDateGranularity.swift; sourceTree = "<group>"; };
 		016FF513257414F600971D07 /* DrinkEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkEntryCell.swift; sourceTree = "<group>"; };
+		016FF53225756BE900971D07 /* AddCustomDrinkQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomDrinkQuantityView.swift; sourceTree = "<group>"; };
+		016FF53925756BF700971D07 /* AddCustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomViewModel.swift; sourceTree = "<group>"; };
 		017525B2252A038900E72E76 /* Barchart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barchart.swift; sourceTree = "<group>"; };
 		0177B6A82520DF2500069F83 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0177B6AF2520DFEC00069F83 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -220,6 +226,7 @@
 			children = (
 				0177B6BB252205A100069F83 /* Components */,
 				01C51E42251B68AC007193D0 /* HomeView.swift */,
+				016FF53225756BE900971D07 /* AddCustomDrinkQuantityView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -290,6 +297,7 @@
 				01A1CFE6251B5E0300EE1210 /* HomeViewModel.swift */,
 				0115C50F253786E700F8DC02 /* SettingsViewModel.swift */,
 				01B3255A25477E3A0016D60F /* ReportsViewModel.swift */,
+				016FF53925756BF700971D07 /* AddCustomViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -697,10 +705,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A1CFE7251B5E0300EE1210 /* HomeViewModel.swift in Sources */,
+				016FF53325756BE900971D07 /* AddCustomDrinkQuantityView.swift in Sources */,
 				0115C510253786E700F8DC02 /* SettingsViewModel.swift in Sources */,
 				01A1CFFD251B62C100EE1210 /* AuthenticationType.swift in Sources */,
 				01A1D01D251B635E00EE1210 /* AuthenticationFormView.swift in Sources */,
 				01A1CFF2251B616700EE1210 /* AuthenticationState.swift in Sources */,
+				016FF53A25756BF700971D07 /* AddCustomViewModel.swift in Sources */,
 				01B770CF252D0FBC0089B1CC /* CircleWaveView.swift in Sources */,
 				01A1CFCB251A9AA700EE1210 /* DrinkEntry.swift in Sources */,
 				01E016A2251BD8FC00745B1C /* ButtonStyles.swift in Sources */,
@@ -733,10 +743,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				016FF4EB2573060300971D07 /* StatisticCell.swift in Sources */,
+				016FF53425756BE900971D07 /* AddCustomDrinkQuantityView.swift in Sources */,
 				016FF4EC2573060300971D07 /* ReportsView.swift in Sources */,
 				016FF4ED2573060300971D07 /* BarchartDateGranularity.swift in Sources */,
 				0177B6A32520D29500069F83 /* ObserveView.swift in Sources */,
 				0115C511253786E700F8DC02 /* SettingsViewModel.swift in Sources */,
+				016FF53B25756BF700971D07 /* AddCustomViewModel.swift in Sources */,
 				0177B6A22520D29200069F83 /* Strings.swift in Sources */,
 				01A1CFE8251B5E0300EE1210 /* HomeViewModel.swift in Sources */,
 				01A1CFFE251B62C100EE1210 /* AuthenticationType.swift in Sources */,
